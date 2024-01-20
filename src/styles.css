@@ -1,0 +1,68 @@
+body {
+    color: #142D2D !important;
+    background-color: #F5F5F5 !important;
+    font-size: 12pt !important;
+    font-weight: normal;
+}
+
+::selection {
+    color: #F5F5F5;
+    background-color: #142D2D;
+}
+
+a {
+    color: #76951F !important;
+    outline: none;
+}
+
+.text-lighter {
+    color: #F5F5F5 !important;
+}
+.text-light {
+    color: #9DF069 !important;
+}
+.text-dark {
+    color: #76951F !important;
+}
+.text-darker {
+    color: #142D2D !important;
+}
+
+
+.bg-lighter {
+    background-color: #F5F5F5 !important;
+}
+.bg-light {
+    background-color: #9DF069 !important;
+}
+.bg-dark {
+    background-color: #76951F !important;
+}
+.bg-darker {
+    background-color: #142D2D !important;
+}
+.bg-darker::selection {
+    background-color: #F5F5F5;
+    color: #142D2D;
+}
+
+
+.text-small {
+    font-size: 12pt;
+}
+.text-medium {
+    font-size: 16pt;
+}
+.text-big {
+    font-size: 24pt;
+}
+.text-bigger {
+    font-size: 36pt;
+}
+.text-huge {
+    font-size: 64pt;
+}
+
+.text-bold {
+    font-weight: bold;
+}
