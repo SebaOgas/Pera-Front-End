@@ -18,7 +18,7 @@
     <div class="value">
         <span class="ph" style="display: {value === "" ? "block" : "none"};">{placeholder}</span>
         <span>{value}</span>
-        <div class="options" style="display: {shown ? "flex" : "none"};">
+        <div class="options bg-lighter" style="display: {shown ? "flex" : "none"};">
             <slot/>
         </div>
     </div>

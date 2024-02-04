@@ -1,5 +1,8 @@
 <script>
+	import Wrapper from '$lib/Wrapper.svelte';
   import '../styles.css'
 </script>
 
-<slot />
+<Wrapper>
+  <slot />
+</Wrapper>
