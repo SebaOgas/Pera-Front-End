@@ -5,10 +5,10 @@
     <a class="text-light" href="./TerminosDeServicio">Términos de Servicio</a>
     <a class="text-light" href="./PoliticaDePrivacidad">Política de Privacidad</a>
     <div class="d-flex flex-row justify-content-center align-items-center">
-        <a href="https://twitter.com"><img src="twitter.png" alt="Twitter"></a>
-        <a href="https://facebook.com"><img src="facebook.png" alt="Twitter"></a>
-        <a href="https://instagram.com"><img src="instagram.png" alt="Twitter"></a>
-        <a href="https://github.com"><img src="github.png" alt="Twitter"></a>
+        <a href="https://twitter.com"><img src="/twitter.png" alt="Twitter"></a>
+        <a href="https://facebook.com"><img src="/facebook.png" alt="Twitter"></a>
+        <a href="https://instagram.com"><img src="/instagram.png" alt="Twitter"></a>
+        <a href="https://github.com"><img src="/github.png" alt="Twitter"></a>
     </div>
 </div>
 

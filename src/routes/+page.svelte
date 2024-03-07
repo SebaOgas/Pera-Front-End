@@ -3,7 +3,6 @@
     import CheckBox from '$lib/CheckBox.svelte'
     import RadioButton from '$lib/RadioButton.svelte';
 	import ComboBox from '$lib/ComboBox.svelte';
-	import TitleBar from '$lib/TitleBar.svelte';
 
     onMount(() => {
         console.log("Hola mundo");
@@ -79,6 +78,42 @@
     In quis augue vulputate, convallis eros ut, sollicitudin nibh. Nunc in malesuada nisi, sed euismod nisl. Nam facilisis mi id finibus pretium. Sed lobortis cursus tortor, et congue ante tempor eget. Nam vitae dui sit amet est tincidunt maximus a eget tellus. Mauris auctor posuere ex, vitae mollis risus sagittis sed. Integer posuere a lectus non lacinia. Nunc eu pretium risus. Vivamus aliquet magna sit amet risus cursus, vel consequat odio aliquam. Integer viverra enim odio. Maecenas euismod odio non nibh fringilla rhoncus.
 </p>
 
+<table class="text-darker under" style="width: 50%">
+    <thead>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+        </tr>
+    </tbody>
+</table>
 
 
 <style>

@@ -1,6 +1,6 @@
 <div class="titleBar fixed-top d-flex flex-row justify-content-between align-items-center bg-darker w-100">
     <a href="/" class="d-flex flex-row justify-content-start align-items-center">
-        <img src="logo.svg" alt="Logo de Pera">
+        <img src="/logo.svg" alt="Logo de Pera">
         <span class="text-bold text-light text-bigger">Pera</span>
     </a>
     <div>
@@ -9,7 +9,7 @@
             <a href="./MisBancos" class="text-light">Mis Bancos</a>
             <a href="./Usuario" class="text-light">Mi Perfil</a>
         </div>
-        <img src="menu.svg" alt="Menú" id="menuIcon" class="d-sm-none">
+        <img src="/menu.svg" alt="Menú" id="menuIcon" class="d-sm-none">
     </div>
     
 </div>

@@ -102,19 +102,42 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
-  }
+}
   
   /* Track */
-  ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: #F5F5F5; 
-  }
+}
    
   /* Handle */
-  ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #142D2D; 
-  }
+}
   
   /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: #76951F; 
-  }
+}
+
+
+
+
+table th {
+    font-weight: normal;
+}
+
+table th, table td {
+    text-align: center;
+}
+
+table tr>*:last-child {
+    text-align: right;
+}
+
+table tr>*:first-child {
+    text-align: left;
+}
+
+table.under tr {
+    border-bottom: 1px solid #142D2D;
+}

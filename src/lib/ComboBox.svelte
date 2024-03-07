@@ -22,7 +22,7 @@
             <slot/>
         </div>
     </div>
-    <img src="comboboxarrow.png" alt="Desplegar" style="{shown ? "transform: rotate(-90deg)" : ""}" />
+    <img src="/comboboxarrow.png" alt="Desplegar" style="{shown ? "transform: rotate(-90deg)" : ""}" />
 </div>
 
 
