@@ -2,17 +2,20 @@
 	import type DTOAuthResponse from "../DTOAuthResponse";
 	import { ServicioRegistrarUsuario } from "../ServicioRegistrarUsuario";
     
+    export let data;
+
     let codigo : string = "";
+    let error : string = "";
+
 
     async function ingresarCodigo() {
 
-        let data : DTOAuthResponse = await ServicioRegistrarUsuario.ingresarCodigo(Number.parseInt(codigo));
-        //window.location.href = "RegistrarUsuario/IngresarCodigoRegistrarUsuario";
-        if (data.error.length > 0) {
-            console.log ("Error: " + data.error);
+        let datos : DTOAuthResponse = await ServicioRegistrarUsuario.ingresarCodigo(data.mail, Number.parseInt(codigo));
+        if (datos.error !== null) {
+            error = datos.error;
             return;
         }
-        console.log("Exito!!!");
+        window.location.href = "/";
     }
 </script>
 
@@ -22,6 +25,9 @@
         <span class="text-medium text-dark">Código:</span>
         <input type="text" bind:value={codigo}>
     </div>
+    <div class="d-flex justify-content-center w-100 mb-3">
+        <span class="text-medium text-dark">{error}</span>
+    </div>  
     <div class="d-flex justify-content-between w-100">
         <button class="bg-darker text-lighter">Cancelar</button>
         <button class="bg-light text-darker" on:click={ingresarCodigo}>Aceptar</button>

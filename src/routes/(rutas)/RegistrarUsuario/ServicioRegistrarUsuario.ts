@@ -18,8 +18,8 @@ export const ServicioRegistrarUsuario = {
         return data;
     },
 
-    ingresarCodigo: async (codigo: number) : Promise<DTOAuthResponse> => {
-        const response = await fetch(`${BASE_URL}/RegistrarUsuario/ingresarCodigo?codigo=${codigo}`, {
+    ingresarCodigo: async (mail: string, codigo: number) : Promise<DTOAuthResponse> => {
+        const response = await fetch(`${BASE_URL}/RegistrarUsuario/ingresarCodigo?mail=${mail}&codigo=${codigo}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export const ServicioRegistrarUsuario = {
             mode: 'cors'
         });
         const data : DTOAuthResponse = await response.json();
-        if (data.error.length === 0) {
+        if (data.error === null) {
             const token = data.token;
             localStorage.setItem("token", token);
         }

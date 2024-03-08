@@ -9,12 +9,18 @@
         password: ""
     }
 
+    let error : string = "";
+
     async function register() {
         if (dto.password !== repetirPassword) {
             return;
         }
-        await ServicioRegistrarUsuario.register(dto);
-        window.location.href = "RegistrarUsuario/IngresarCodigoRegistrarUsuario";
+        let resp : string = await ServicioRegistrarUsuario.register(dto);
+        if (resp.length !== 0) {
+            error = resp;
+            return;
+        }
+        window.location.href = "RegistrarUsuario/" + dto.email;
     }
 </script>
 
@@ -35,6 +41,9 @@
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-dark">Repetir Contraseña:</span>
         <input type="password" bind:value={repetirPassword}>
+    </div>    
+    <div class="d-flex justify-content-center w-100 mb-3">
+        <span class="text-medium text-dark">{error}</span>
     </div>    
     <div class="d-flex justify-content-center w-100">
         <button class="bg-light text-darker text-big" on:click={register}>Registrarse</button>
