@@ -4,7 +4,7 @@ import type DTOLoginRequest from "./DTODatosUsuario";
 
 const BASE_URL = "http://localhost:8080";
 
-export const ServicioLoguearUsuario = {
+export const ServicioUsuario = {
     
     get: async () : Promise<DTODatosUsuario | string> => {
         const response = await fetch(`${BASE_URL}/Usuario/get`, {

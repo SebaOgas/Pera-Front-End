@@ -13,6 +13,7 @@
 
     async function register() {
         if (dto.password !== repetirPassword) {
+            error = "Las contraseñas no coinciden"
             return;
         }
         let resp : string = await ServicioRegistrarUsuario.register(dto);

@@ -1,20 +1,21 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import type DTOAuthResponse from "../RegistrarUsuario/DTOAuthResponse";
-	import type DTOLoginRequest from "./DTODatosUsuario";
-	import { ServicioLoguearUsuario } from "./ServicioUsuario";
+	import { ServicioUsuario } from "./ServicioUsuario";
 	import type DTODatosUsuario from "./DTODatosUsuario";
     
     let error : string = "";
-    let dto : DTODatosUsuario;
+    let dto : DTODatosUsuario
+
     onMount( async () => {
-        let response : DTODatosUsuario | string = await ServicioLoguearUsuario.get();
+
+
+        let response : DTODatosUsuario | string = await ServicioUsuario.get();
         if (typeof response === "string") {
             error = response;
+            window.location.href ="/";
         } else {
             dto = response;
         }
-        console.log(response);
     });
 
     
@@ -23,9 +24,14 @@
         window.history.back();
     }
 
-    async function login() {
+    async function admin() {
         
         window.location.href = "/AdministrarDatosDelUsuario";
+    }
+
+    async function suscribirseAPremium() {
+        
+        window.location.href = "/SuscribirseAPremium";
     }
 </script>
 
@@ -49,14 +55,14 @@
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <button class="bg-light text-darker text-medium" on:click={back}>Atrás</button>
-        <button class="bg-light text-darker text-medium" on:click={login}>Modificar</button>
+        <button class="bg-light text-darker text-medium" on:click={admin}>Modificar</button>
     </div>
     <div class="d-flex justify-content-center w-100 mb-3">
         <span class="text-medium text-dark">{error}</span>
     </div>   
     {#if dto?.rol.nombre === "No Premium"} 
         <div class="d-flex justify-content-center w-100">
-            <button class="bg-darker text-light text-big" on:click={login}>Obtener Premium</button>
+            <button class="bg-darker text-light text-big" on:click={suscribirseAPremium}>Obtener Premium</button>
         </div>
     {/if}
 
