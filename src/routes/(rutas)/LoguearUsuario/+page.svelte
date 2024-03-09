@@ -16,7 +16,7 @@
             error = resp.error;
             return;
         }
-        window.location.href = "/";
+        window.location.href = "/Usuario";
     }
 </script>
 
