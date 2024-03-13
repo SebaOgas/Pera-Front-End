@@ -1,5 +1,14 @@
-<script>
+<script lang="ts">
+	import { onMount } from "svelte";
 	import Card from "./card.svelte";
+
+    onMount(async () => {
+        //Obtener planes
+    });
+
+    function elegirPlan(idPlan : number) {
+        window.location.href = `SuscribirseAPremium/${idPlan}`;
+    }
 
 </script>
 
@@ -7,9 +16,9 @@
     <h1 class="text-center text-dark text-bold">Planes Premium</h1>
 
     <div class="d-flex flex-row justify-content-around align-items-center w-100 card-list">
-        <Card title="Título" value={2999.99}>Disfrute de las ventajas de Premium por 30 días</Card>
-        <Card title="Título" value={7999.50}>Aproveche los beneficios por un precio inferior durante tres meses</Card>
-        <Card title="Título" value={29999} click={() => {console.log("A")}}>Olvídese de renovar la suscripción por un año</Card>
+        <Card title="Título" value={2999.99} click={() => {elegirPlan(0)}}>Disfrute de las ventajas de Premium por 30 días</Card>
+        <Card title="Título" value={7999.50} click={() => {elegirPlan(1)}}>Aproveche los beneficios por un precio inferior durante tres meses</Card>
+        <Card title="Título" value={29999} click={() => {elegirPlan(2)}}>Olvídese de renovar la suscripción por un año</Card>
     </div>
     
     <div class="text-center text-darker">
