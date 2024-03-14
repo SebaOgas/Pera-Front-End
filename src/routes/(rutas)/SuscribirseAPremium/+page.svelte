@@ -1,9 +1,21 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import Card from "./card.svelte";
+	import { ServicioSuscribirseAPremium } from "./ServicioSuscribirseAPremium";
+	import type DTOPlanPremium from "./DTOPlanPremium";
+
+    let planes : DTOPlanPremium[] = [];
 
     onMount(async () => {
         //Obtener planes
+        let response = await ServicioSuscribirseAPremium.obtenerPlanes();
+
+        if (typeof response === "string") {
+            return;
+        }
+
+        planes = response;
+
     });
 
     function elegirPlan(idPlan : number) {
@@ -16,10 +28,10 @@
     <h1 class="text-center text-dark text-bold">Planes Premium</h1>
 
     <div class="d-flex flex-row justify-content-around align-items-center w-100 card-list">
-        <Card title="Título" value={2999.99} click={() => {elegirPlan(0)}}>Disfrute de las ventajas de Premium por 30 días</Card>
-        <Card title="Título" value={7999.50} click={() => {elegirPlan(1)}}>Aproveche los beneficios por un precio inferior durante tres meses</Card>
-        <Card title="Título" value={29999} click={() => {elegirPlan(2)}}>Olvídese de renovar la suscripción por un año</Card>
-    </div>
+        {#each planes as plan}
+            <Card title={plan.nombre} value={plan.precio} click={() => {elegirPlan(plan.id)}}>{plan.descrip}</Card>
+        {/each}
+        </div>
     
     <div class="text-center text-darker">
         <h4 class="text-center text-dark text-bold">Beneficios:</h4>
