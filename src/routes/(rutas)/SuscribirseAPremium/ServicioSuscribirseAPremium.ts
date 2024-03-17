@@ -53,6 +53,7 @@ export const ServicioSuscribirseAPremium = {
             return await response.text();
         }
         const data : DTORespuestaSuscripcionPremium = await response.json();
+        localStorage.setItem("permisos", JSON.stringify(data.permisos));
         return data;
     }
 }

@@ -46,7 +46,6 @@
     let finalizado : boolean = false;
 
     function selectMedioDePago(id : number, nombre : string) {
-        console.log(id)
         buttons.forEach(e => {
             e.classList.add("bg-light");
             e.classList.remove("bg-dark");

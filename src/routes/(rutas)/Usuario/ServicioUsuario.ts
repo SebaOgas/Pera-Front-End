@@ -19,6 +19,7 @@ export const ServicioUsuario = {
             return await response.text();
         }
         const data : DTODatosUsuario = await response.json();
+        localStorage.setItem("permisos", JSON.stringify(data.rol.permisos));
         return data;
     }
 }
