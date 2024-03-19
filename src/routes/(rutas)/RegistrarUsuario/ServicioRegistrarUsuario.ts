@@ -12,7 +12,8 @@ export const ServicioRegistrarUsuario = {
                 'Content-Type': 'application/json'
             },
             mode: 'cors',
-            body: JSON.stringify(dto)
+            body: JSON.stringify(dto),
+            credentials: "include"
         });
         const data = await response.text();
         return data;
@@ -24,7 +25,8 @@ export const ServicioRegistrarUsuario = {
             headers: {
                 'Content-Type': 'application/json'
             },
-            mode: 'cors'
+            mode: 'cors',
+            credentials: "include"
         });
         const data : DTOAuthResponse = await response.json();
         if (data.error === null) {
