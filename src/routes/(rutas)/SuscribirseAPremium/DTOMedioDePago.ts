@@ -1,3 +1,4 @@
 export default interface DTOMedioDePago {
-    nombreMDP: string
+    nombreMDP: string,
+    idMDP: number
 }

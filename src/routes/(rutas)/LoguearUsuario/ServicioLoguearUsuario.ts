@@ -12,12 +12,14 @@ export const ServicioLoguearUsuario = {
                 'Content-Type': 'application/json'
             },
             mode: 'cors',
-            body: JSON.stringify(dto)
+            body: JSON.stringify(dto),
+            credentials: "include"
         });
         const data : DTOAuthResponse = await response.json();
         if (data.error === null) {
             const token = data.token;
             localStorage.setItem("token", token);
+            localStorage.setItem("permisos", JSON.stringify(data.permisos));
         }
         return data;
     }

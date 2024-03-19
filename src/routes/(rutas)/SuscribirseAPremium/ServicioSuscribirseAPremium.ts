@@ -15,8 +15,10 @@ export const ServicioSuscribirseAPremium = {
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
             },
             mode: 'cors',
+            credentials: "include"
         });
         if (response.status !== 200) {
+            console.log(await response.text())
             return await response.text();
         }
         const data : DTOPlanPremium[] = await response.json();
@@ -31,6 +33,7 @@ export const ServicioSuscribirseAPremium = {
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
             },
             mode: 'cors',
+            credentials: "include"
         });
         if (response.status !== 200) {
             return await response.text();
@@ -48,11 +51,13 @@ export const ServicioSuscribirseAPremium = {
             },
             body: JSON.stringify(dto),
             mode: 'cors',
+            credentials: "include"
         });
         if (response.status !== 200) {
             return await response.text();
         }
         const data : DTORespuestaSuscripcionPremium = await response.json();
+        localStorage.setItem("permisos", JSON.stringify(data.permisos));
         return data;
     }
 }

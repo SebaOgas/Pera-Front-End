@@ -1,21 +1,51 @@
 <script lang="ts">
 	import Money from "$lib/Money.svelte";
 	import { onMount } from "svelte";
+	import { ServicioSuscribirseAPremium } from "../ServicioSuscribirseAPremium.js";
+	import type DTOOpcionesPago from "../DTOOpcionesPago.js";
+	import type DTODatosSuscripcionPremium from "../DTODatosPagoSuscripcionPremium.js";
+	import type DTORespuestaSuscripcionPremium from "../DTORespuestaSuscripcionPremium.js";
 
     export let data;
 
     let form : HTMLElement;
     let buttons : HTMLElement[] = new Array();
 
+    let info : DTOOpcionesPago = {
+		idPP: -1,
+		nombrePP: "",
+		descripPP: "",
+		precioPP: 0,
+		mediosDePago: []
+	};
+
+    let error : string;
+
     onMount(async () => {
         //Obtener Medios de Pago
-        data.idPlan;
+        let response = await ServicioSuscribirseAPremium.obtenerMediosDePago(data.idPlan);
+        if (typeof response === "string") {
+            error = response;
+            return;
+        }
+
+        info = response;
+
     });
 
-    let medioDePago : number;
+    let medioDePago : {id: number, nombre: string} = {
+		id: -1,
+		nombre: ""
+	};
+
+    let datosPago : DTODatosSuscripcionPremium = {
+		idMedioDePago: -1,
+		datosPago: {}
+	};
+
     let finalizado : boolean = false;
 
-    function selectMedioDePago(id : number) {
+    function selectMedioDePago(id : number, nombre : string) {
         buttons.forEach(e => {
             e.classList.add("bg-light");
             e.classList.remove("bg-dark");
@@ -28,13 +58,27 @@
         buttons[id].classList.remove("text-darker");
         buttons[id].classList.add("text-lighter");
 
-        medioDePago = id;
+        medioDePago.id = id;
+        medioDePago.nombre = nombre;
+
+        datosPago.idMedioDePago = id;
+        
     }
 
+    let detallesSuscripcion : DTORespuestaSuscripcionPremium;
 
     async function realizarPago() {
         //Realizar Pago
-        finalizado = true;
+        let response = await ServicioSuscribirseAPremium.realizarPago(datosPago);
+        
+        if (typeof response === "string") {
+            error = response;
+            return;
+        }
+
+        detallesSuscripcion = response;
+        
+        finalizado = detallesSuscripcion.exito;
     }
 
 </script>
@@ -44,12 +88,12 @@
 
     <div class="d-flex flex-row justify-content-between align-items-center w-50 mx-auto">
         <div class="left_data">
-            <h4 class="text-center text-dark text-bold">Nombre Plan</h4>
+            <h4 class="text-center text-dark text-bold">{info.nombrePP}</h4>
             <div class="text-center text-medium m-1">
-                Disfrute de las ventajas de Premium por 30 días
+                {info.descripPP}
             </div>
         </div>
-        <Money numero={2999.99} color="dark"/>
+        <Money numero={info.precioPP} color="dark"/>
     </div>
 
     <div bind:this={form} class="form d-flex flex-column align-items-center">
@@ -57,32 +101,33 @@
         <h4 class="text-center text-dark text-bold">Medio de Pago:</h4>
 
         <div class="opciones_pago d-flex flex-row justify-content-center align-items-center">
-            <button class="text-small bg-light text-darker" bind:this={buttons[0]} on:click={() => selectMedioDePago(0)}>Mercado Pago</button>
-            <button class="text-small bg-light text-darker" bind:this={buttons[1]} on:click={() => selectMedioDePago(1)}>Débito MasterCard</button>
-            <button class="text-small bg-light text-darker" bind:this={buttons[2]} on:click={() => selectMedioDePago(2)}>Crédito MasterCard</button>
-            <button class="text-small bg-light text-darker" bind:this={buttons[3]} on:click={() => selectMedioDePago(3)}>Crédito Visa</button>
-    
+            {#each info.mediosDePago as mdp}
+                <button class="text-small bg-light text-darker" bind:this={buttons[mdp.idMDP]} on:click={() => selectMedioDePago(mdp.idMDP, mdp.nombreMDP)}>{mdp.nombreMDP}</button>
+            {/each}   
         </div>
     
         <div class="d-flex flex-column justify-content-center align-items-center">
-            {#if medioDePago === 0}
+            {#if medioDePago.nombre === "Mercado Pago"}
                 <div>Formulario para Mercado Pago</div>
                 <button class="text-medium text-darker bg-light" on:click={realizarPago}>Aceptar</button>    
-            {:else if medioDePago === 1}
-                <div>Formulario para Débito MasterCard</div>
-                <button class="text-medium text-darker bg-light">Aceptar</button>   
             {/if}
 
         </div>
 
         {:else}
-            <div class="text-medium text-dark">Pago realizado exitosamente</div>
+            <div class="text-medium text-dark">{detallesSuscripcion.mensaje}</div>
             <h4 class="text-center text-dark text-bold">¡Ya puede disfrutar de los beneficios de Pera Premium!</h4>
-            <div class="text-medium text-dark">Válido hasta el dd/MM/yyyy</div>
+            <div class="text-medium text-dark">Válido hasta el {new Date(detallesSuscripcion.fechaFin)}</div>
             
             <button class="text-medium text-darker bg-light" on:click={() => {window.location.href = "/Usuario"}}>Finalizar</button> 
         {/if}
     </div>
+
+    {#if error !== undefined}
+        <div class="d-flex justify-content-center w-100 mb-3">
+            <span class="text-medium text-dark">{error}</span>
+        </div>   
+    {/if}
     
 </div>
 

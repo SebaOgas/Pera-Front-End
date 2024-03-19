@@ -14,11 +14,13 @@ export const ServicioUsuario = {
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
             },
             mode: 'cors',
+            credentials: "include"
         });
         if (response.status === 403) {
             return await response.text();
         }
         const data : DTODatosUsuario = await response.json();
+        localStorage.setItem("permisos", JSON.stringify(data.rol.permisos));
         return data;
     }
 }
