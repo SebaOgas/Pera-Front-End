@@ -6,8 +6,19 @@
     let error : string = "";
     let dto : DTODatosUsuario
 
-    onMount( async () => {
+    let permisos : string[] = [];
 
+    onMount( async () => {
+        let permisosString = localStorage.getItem("permisos");
+        if (permisosString === null) {
+            window.location.href = "/LoguearUsuario";
+            return;
+        }
+        permisos = JSON.parse(permisosString);
+
+        if(!permisos.includes("ADMIN_DATOS_PROPIOS")) {
+            window.location.href = "/";
+        }
 
         let response : DTODatosUsuario | string = await ServicioUsuario.get();
         if (typeof response === "string") {

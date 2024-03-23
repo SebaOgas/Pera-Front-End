@@ -49,5 +49,8 @@
     <div class="d-flex justify-content-center w-100">
         <button class="bg-light text-darker text-big" on:click={register}>Registrarse</button>
     </div>
+    <div class="d-flex justify-content-center w-100">
+        <a href="/LoguearUsuario" class="text-medium">Iniciar Sesión</a>
+    </div>
 
 </div>
