@@ -3,12 +3,13 @@
     export let name: string = "";
     export let checked: boolean = false;
     export let value: string = "on";
+    export let classes: string = "";
 </script>
 
 
 <label class="checkbox">
-    <input type="checkbox" {name} {checked} {value}/>
-    {label}
+    <input type="checkbox" {name} {value} bind:checked/>
+    <span class="{classes}">{label}</span>
 </label>
 
 
