@@ -20,7 +20,7 @@ import type DTOCrearBanco from "./DTOCrearBanco";
 
     let finalizado = false;
 
-    /*let permisos : string[] = [];
+    let permisos : string[] = [];
 
     onMount(() => {
         let permisosString = localStorage.getItem("permisos");
@@ -30,11 +30,11 @@ import type DTOCrearBanco from "./DTOCrearBanco";
         }
         permisos = JSON.parse(permisosString);
 
-        if(!permisos.includes("ADMIN_PARAMETROS")) {
+        if(!permisos.includes("ADMIN_BANCOS_PROPIOS")) {
             window.location.href = "/";
         }
     });
-    */
+    
 
     async function crearBanco() {
         let resp : string = await ServicioCrearBanco.crear(dto);
@@ -63,10 +63,12 @@ import type DTOCrearBanco from "./DTOCrearBanco";
             <span class="text-medium text-darker">Nombre:</span>
             <input type="text" bind:value={dto.nombre}>
         </div>
+        {#if permisos.includes("ELEGIR_SIMBOLO_MONEDA")}
         <div class="d-flex justify-content-between w-100 mb-3">
             <span class="text-medium text-darker">Simbolo Moneda:</span>
             <input type="text" bind:value={dto.simboloMoneda}>
         </div>
+        {/if}
         <div class="d-flex justify-content-between w-100 mb-3">
             <CheckBox label="Habilitación Automática" classes="text-medium" bind:checked={dto.habilitacionAutomatica}/>
         </div>

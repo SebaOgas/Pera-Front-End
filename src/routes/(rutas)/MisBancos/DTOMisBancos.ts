@@ -1,5 +1,5 @@
 export default interface DTOMisBancos {
-    numero : number,
+    id : number,
     nombre : string,
     ocupacion : string,
     estado : string,

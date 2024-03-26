@@ -6,7 +6,7 @@
     
 
     let dto : DTOMisBancos = {
-        numero : 0,
+        id : 0,
         nombre : "",
         ocupacion : "",
         estado : "",
@@ -16,16 +16,16 @@
     let bancos : DTOMisBancos[] = [];
 
     onMount(async () => {
-        /*let permisosString = localStorage.getItem("permisos");
+        let permisosString = localStorage.getItem("permisos");
         if (permisosString === null) {
             window.location.href = "/LoguearUsuario";
             return;
         }
         permisos = JSON.parse(permisosString);
 
-        if(!permisos.includes("ADMIN_PARAMETROS")) {
+        if(!permisos.includes("ADMIN_BANCOS_PROPIOS")) {
             window.location.href = "/";
-        }*/
+        }
 
         //Obtener bancos al cargar la pagina
         let response = await ServicioMisBancos.obtenerBancos();
@@ -42,42 +42,28 @@
 
 </script>
 
-<div class="container w-50 h-100">
+<div class="container w-75 h-100">
     <h2 class="text-center text-dark text-bold">Bancos</h2>
-    <table>
+    <table class="w-100">
         <thead>
             <tr>
                 <td>N.º</td>
                 <td>Nombre</td>
                 <td>Ocupación</td>
                 <td>Estado</td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
             {#each bancos as b}
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <tr>
-                <td>{dto.numero}</td>
-                <td>{dto.nombre}</td>
-                <td>{dto.ocupacion}</td>
-                <td>{dto.estado}</td>
-            </tr>
-            <tr>
-                <td>A2</td>
-                <td>B2</td>
-                <td>C2</td>
-                <td>D2</td>
-            </tr>
-            <tr>
-                <td>A3</td>
-                <td>B3</td>
-                <td>C3</td>
-                <td>D3</td>
-            </tr>
-            <tr>
-                <td>A4</td>
-                <td>B4</td>
-                <td>C4</td>
-                <td>D4</td>
+                <td>{b.id}</td>
+                <td>{b.nombre}</td>
+                <td>{b.ocupacion}</td>
+                <td>{b.estado}</td>
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <td><img src="/right_arrow.svg" alt=">" class="clickable" on:click={() => {window.location.href = `MisBancos/${b.id}`;}}></td>
             </tr>
             {/each}
         </tbody>
