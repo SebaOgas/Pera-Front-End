@@ -6,11 +6,26 @@
 
     let planes : DTOPlanPremium[] = [];
 
+    let error :string = "";
+
     onMount(async () => {
+
+        let permisosString = localStorage.getItem("permisos");
+        if (permisosString === null) {
+            window.location.href = "/LoguearUsuario";
+            return;
+        }
+        let permisos : string[] = JSON.parse(permisosString);
+        if(!permisos.includes("SUSCRIPCION_PREMIUM")) {
+            window.location.href = "/Usuario";
+        }
+
         //Obtener planes
         let response = await ServicioSuscribirseAPremium.obtenerPlanes();
 
         if (typeof response === "string") {
+            error = response;
+            if (error === "") window.location.href = "/LoguearUsuario";
             return;
         }
 
@@ -31,7 +46,10 @@
         {#each planes as plan}
             <Card title={plan.nombre} value={plan.precio} click={() => {elegirPlan(plan.id)}}>{plan.descrip}</Card>
         {/each}
-        </div>
+    </div>
+    <div class="text-center text-darker">
+        {error}
+    </div>
     
     <div class="text-center text-darker">
         <h4 class="text-center text-dark text-bold">Beneficios:</h4>
