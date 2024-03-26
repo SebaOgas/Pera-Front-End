@@ -61,10 +61,25 @@ a:focus {
     font-size: 24px;
 }
 .text-bigger {
-    font-size: 36px;
+    font-size: 28px;
 }
 .text-huge {
+    font-size: 48px;
+}
+.text-gigantic {
     font-size: 64px;
+}
+
+@media (min-width: 768px) {
+    .text-bigger {
+        font-size: 36px;
+    }
+    .text-huge {
+        font-size: 64px;
+    }
+    .text-gigantic {
+        font-size: 128px;
+    }
 }
 
 
