@@ -87,6 +87,10 @@ a:focus {
     font-weight: bold;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 
 button, input[type="button"], input[type="submit"] {
     border-radius: 4px;

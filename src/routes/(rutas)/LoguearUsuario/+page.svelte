@@ -35,9 +35,10 @@
     </div>    
     <div class="d-flex justify-content-center w-100">
         <button class="bg-light text-darker text-big" on:click={login}>Iniciar Sesión</button>
-    </div>    
-    <div class="d-flex justify-content-center w-100">
-        <a href="/RegistrarUsuario" class="text-medium">Registrarse</a>
+    </div>
+    <div class="w-100 d-flex flex-row justify-content-center">
+        <a href="/RegistrarUsuario">Registrarse</a>
     </div>
 
 </div>
+

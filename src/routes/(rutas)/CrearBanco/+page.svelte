@@ -1,5 +1,8 @@
 <script lang="ts">
-	import CheckBox from "$lib/CheckBox.svelte";
+	import { onMount } from "svelte";
+	import CheckBox from "../../../lib/CheckBox.svelte";
+
+	
 import type DTOCrearBanco from "./DTOCrearBanco";
 	
 	import { ServicioCrearBanco } from "./ServicioCrearBanco";
@@ -16,6 +19,22 @@ import type DTOCrearBanco from "./DTOCrearBanco";
     let error : string = "";
 
     let finalizado = false;
+
+    let permisos : string[] = [];
+
+    onMount(() => {
+        let permisosString = localStorage.getItem("permisos");
+        if (permisosString === null) {
+            window.location.href = "/LoguearUsuario";
+            return;
+        }
+        permisos = JSON.parse(permisosString);
+
+        if(!permisos.includes("ADMIN_BANCOS_PROPIOS")) {
+            window.location.href = "/";
+        }
+    });
+    
 
     async function crearBanco() {
         let resp : string = await ServicioCrearBanco.crear(dto);
@@ -38,16 +57,18 @@ import type DTOCrearBanco from "./DTOCrearBanco";
 </script>
 
 <div class="container w-50 h-100">
-    <h1 class="text-center text-dark text-bold">Crear Banco</h1>
+    <h2 class="text-center text-dark text-bold">Crear Banco</h2>
     {#if !finalizado}
         <div class="d-flex justify-content-between w-100 mb-3">
             <span class="text-medium text-darker">Nombre:</span>
             <input type="text" bind:value={dto.nombre}>
         </div>
+        {#if permisos.includes("ELEGIR_SIMBOLO_MONEDA")}
         <div class="d-flex justify-content-between w-100 mb-3">
             <span class="text-medium text-darker">Simbolo Moneda:</span>
             <input type="text" bind:value={dto.simboloMoneda}>
         </div>
+        {/if}
         <div class="d-flex justify-content-between w-100 mb-3">
             <CheckBox label="Habilitación Automática" classes="text-medium" bind:checked={dto.habilitacionAutomatica}/>
         </div>

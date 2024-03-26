@@ -32,5 +32,4 @@
         <button class="bg-darker text-lighter">Cancelar</button>
         <button class="bg-light text-darker" on:click={ingresarCodigo}>Aceptar</button>
     </div>   
-
 </div>
