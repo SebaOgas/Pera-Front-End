@@ -18,6 +18,7 @@ export const ServicioSuscribirseAPremium = {
             credentials: "include"
         });
         if (response.status !== 200) {
+            console.log(await response.text())
             return await response.text();
         }
         const data : DTOPlanPremium[] = await response.json();
