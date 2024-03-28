@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import CheckBox from "../../../lib/CheckBox.svelte";
 	import type DTOMisBancos from "./DTOMisBancos";
 	import { ServicioMisBancos } from "./ServicioMisBancos";
     
