@@ -52,33 +52,33 @@ a:focus {
 
 
 .text-small {
-    font-size: 12px;
+    font-size: 12px !important;
 }
 .text-medium {
-    font-size: 16px;
+    font-size: 16px !important;
 }
 .text-big {
-    font-size: 24px;
+    font-size: 24px !important;
 }
 .text-bigger {
-    font-size: 28px;
+    font-size: 28px !important;
 }
 .text-huge {
-    font-size: 48px;
+    font-size: 48px !important;
 }
 .text-gigantic {
-    font-size: 64px;
+    font-size: 64px !important;
 }
 
 @media (min-width: 768px) {
     .text-bigger {
-        font-size: 36px;
+        font-size: 36px !important;
     }
     .text-huge {
-        font-size: 64px;
+        font-size: 64px !important;
     }
     .text-gigantic {
-        font-size: 128px;
+        font-size: 128px !important;
     }
 }
 

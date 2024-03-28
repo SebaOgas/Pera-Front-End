@@ -22,6 +22,16 @@
     let error : string;
 
     onMount(async () => {
+        let permisosString = localStorage.getItem("permisos");
+        if (permisosString === null) {
+            window.location.href = "/LoguearUsuario";
+            return;
+        }
+        let permisos : string[] = JSON.parse(permisosString);
+        if(!permisos.includes("SUSCRIPCION_PREMIUM")) {
+            window.location.href = "/Usuario";
+        }
+        
         //Obtener Medios de Pago
         let response = await ServicioSuscribirseAPremium.obtenerMediosDePago(data.idPlan);
         if (typeof response === "string") {

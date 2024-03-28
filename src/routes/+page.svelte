@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="d-flex flex-row justify-content-center align-items-center comenzar-button">
-                <button class="bg-light text-darker text-bigger" on:click={() => {window.location.href = "/MisCuentasBancarias"}}>Comenzar</button>
+                <button class="bg-light text-darker text-bigger" on:click={() => {window.location.href = "/LoguearUsuario"}}>Comenzar</button>
             </div>
         </div>
         <div class="bg-darker">

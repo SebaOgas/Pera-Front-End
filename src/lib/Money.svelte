@@ -33,7 +33,7 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="money {editable ? "editable" : ""} d-flex flex-row text-{color} text-bigger" on:click={focusInput}>
+<div class="money {editable ? "editable" : ""} d-flex flex-row text-{color}" on:click={focusInput}>
     <span>{simbolo}</span>
     <span>{Math.floor(numero)}</span>
     <div class="d-flex flex-column">
@@ -56,6 +56,7 @@
 
     .money {
         cursor: default;
+        font-size: 36px;
     }
 
     .money.editable {
