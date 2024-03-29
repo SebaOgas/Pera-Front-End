@@ -61,7 +61,7 @@
             <tr>
                 <td>{c.id}</td>
                 <td>{c.nombreBanco}</td>
-                <td>{c.moneda + " " + c.monto}</td>
+                <td>{c.moneda + " " + c.monto.toFixed(2)}</td>
                 <td>{c.estado}</td>
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <td><img src="/right_arrow.svg" alt=">" class="clickable" on:click={() => {window.location.href = `MisCuentasBancarias/${c.id}`;}}></td>

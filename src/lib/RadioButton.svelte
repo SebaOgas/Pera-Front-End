@@ -52,7 +52,7 @@
     .radiobutton input::before {
         content: "";
         transform: scale(0);
-        background-image: url("aceptar.png");
+        background-image: url("/aceptar.png");
         background-size: contain;
         background-repeat: no-repeat;
         transition: transform 500ms;

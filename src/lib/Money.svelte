@@ -10,7 +10,8 @@
     let nroInput : HTMLInputElement;
 
     onMount(() => {
-        nroInput.value = numero.toFixed(2);
+        nroInput.value = "" + numero;
+        updateNumero();
     });
 
     function focusInput() {
@@ -18,26 +19,34 @@
             nroInput.focus()
     }
 
+    $: floatPart = ("00" + Math.floor(numero % 1 * 100)).slice(-2);
+    $: intPart = Math.floor(numero)
+
     function updateNumero() {
-        let aux : number = parseFloat(nroInput.value)
+        let aux : number = 0.0;
+        if (nroInput.value.length > 0) {
+            aux = parseFloat(nroInput.value)
+        }
         if (!isNaN(aux)) {
             let arr = nroInput.value.split(".");
             if (arr.length === 1 || arr[1].length <= 2) {
-                numero = aux
+                numero = aux;
             } else {
                 nroInput.value = numero.toFixed(2);
             }
         }
+        
+        
     }
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="money {editable ? "editable" : ""} d-flex flex-row text-{color}" on:click={focusInput}>
+<div class="money {editable ? "editable" : ""} d-inline-flex flex-row text-{color}" on:click={focusInput}>
     <span>{simbolo}</span>
-    <span>{Math.floor(numero)}</span>
+    <span>{intPart}</span>
     <div class="d-flex flex-column">
-        <span class="text-big">{("00" + Math.floor(numero % 1 * 100)).slice(-2)}</span>
+        <span class="text-big">{floatPart}</span>
     </div>
 
     <input type="number" bind:this={nroInput} on:input={updateNumero}>
