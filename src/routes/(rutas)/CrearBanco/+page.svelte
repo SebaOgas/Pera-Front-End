@@ -22,6 +22,8 @@ import type DTOCrearBanco from "./DTOCrearBanco";
 
     let permisos : string[] = [];
 
+    let nroBanco : number = -1;
+
     onMount(() => {
         let permisosString = localStorage.getItem("permisos");
         if (permisosString === null) {
@@ -38,11 +40,17 @@ import type DTOCrearBanco from "./DTOCrearBanco";
 
     async function crearBanco() {
         let resp : string = await ServicioCrearBanco.crear(dto);
+        console.log(resp)
         if (resp.length !== 0) {
-            error = resp;
-            return;
+            if (!(/[0-9]+/.test(resp))) {
+                error = resp;
+                return;
+            }
+            error = "";
+            nroBanco = Number.parseInt(resp);
+            finalizado = true;
         }
-        finalizado = true;
+        
     }
 
     async function back() {
@@ -95,7 +103,7 @@ import type DTOCrearBanco from "./DTOCrearBanco";
     {:else}
         <div style="display: flex;">
             <div class="d-flex justify-content-center w-100">
-                <button class="bg-light text-darker text-medium" on:click={() => {window.location.href = "/AdministrarBancoPropio";}}>Finalizar</button>
+                <button class="bg-light text-darker text-medium" on:click={() => {window.location.href = `/MisBancos/${nroBanco}`;}}>Finalizar</button>
             </div>
         </div>
     {/if}

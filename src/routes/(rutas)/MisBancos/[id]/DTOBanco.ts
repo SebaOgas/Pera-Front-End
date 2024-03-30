@@ -1,11 +1,13 @@
 export default interface DTOBanco{
     nroBanco: number,
-    nombreBanco: string,
-    estadoBanco: string,
+    nombre: string,
+    estado: string,
     simboloMoneda: string,
     usaPassword: string,
     usaHabilitacionAutomatica: string,
+    nombreDueno: string,
     emailDueno: string,
-    baseMonetaria: number
+    baseMonetaria: number,
+    nroCB: number
 
 }

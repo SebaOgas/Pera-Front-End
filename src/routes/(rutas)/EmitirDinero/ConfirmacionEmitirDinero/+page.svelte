@@ -4,8 +4,6 @@
 	import { ServicioEmitirDinero } from '../ServicioEmitirDinero';
 	import Money from '$lib/Money.svelte';
 
-
-    export let data;
     
     let error = "";
     let permisos : string[] = [];
@@ -115,9 +113,6 @@
 
 
 <style>
-    textarea {
-        resize: none;
-    }
 
     .paragraph * {
         white-space: wrap;

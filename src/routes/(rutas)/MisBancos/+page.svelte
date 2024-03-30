@@ -14,6 +14,8 @@
     let permisos : string[] = [];
     let bancos : DTOMisBancos[] = [];
 
+    let error = "";
+
     onMount(async () => {
         let permisosString = localStorage.getItem("permisos");
         if (permisosString === null) {
@@ -30,6 +32,7 @@
         let response = await ServicioMisBancos.obtenerBancos();
 
         if (typeof response === "string") {
+            error = response;
             return;
         }
 
