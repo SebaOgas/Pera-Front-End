@@ -6,6 +6,9 @@ const BASE_URL = "http://localhost:8080";
 export const ServicioLoguearUsuario = {
     
     login: async (dto: DTOLoginRequest) : Promise<DTOAuthResponse> => {
+        document.cookie = 'SESSION=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        localStorage.setItem("token", "");
+        localStorage.setItem("permisos", "[]");
         const response = await fetch(`${BASE_URL}/LoguearUsuario/login`, {
             method: "POST",
             headers: {

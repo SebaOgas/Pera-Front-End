@@ -9,13 +9,16 @@ export const ServicioRegistrarUsuario = {
         const response = await fetch(`${BASE_URL}/RegistrarUsuario/register`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json;charset=utf-8'
             },
             mode: 'cors',
             body: JSON.stringify(dto),
             credentials: "include"
         });
         const data = await response.text();
+        document.cookie = 'SESSION=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        localStorage.setItem("token", "");
+        localStorage.setItem("permisos", "[]");
         return data;
     },
 

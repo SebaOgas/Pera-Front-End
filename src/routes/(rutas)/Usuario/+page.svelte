@@ -42,6 +42,13 @@
         
         window.location.href = "/SuscribirseAPremium";
     }
+
+    function cerrarSesion() {
+        document.cookie = 'SESSION=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        localStorage.setItem("token", "");
+        localStorage.setItem("permisos", "[]");
+        window.location.href = "/";
+    }
 </script>
 
 <div class="container w-75 h-100">
@@ -70,8 +77,9 @@
         <span class="text-medium text-dark">{error}</span>
     </div>   
     {#if dto?.rol.nombre === "No Premium"} 
-        <div class="d-flex justify-content-center w-100">
+        <div class="d-flex flex-column justify-content-center align-items-center w-100" style="gap: 20px;">
             <button class="bg-darker text-light text-big" on:click={suscribirseAPremium}>Obtener Premium</button>
+            <button class="bg-darker text-lighter text-small" on:click={cerrarSesion}>Cerrar Sesión</button>
         </div>
     {/if}
 

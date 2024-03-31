@@ -18,6 +18,7 @@
         }
         let resp : string = await ServicioRegistrarUsuario.register(dto);
         if (resp.length !== 0) {
+            console.log(resp);
             error = resp;
             return;
         }
