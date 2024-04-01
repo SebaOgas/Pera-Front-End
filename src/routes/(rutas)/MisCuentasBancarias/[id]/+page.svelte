@@ -98,7 +98,9 @@
 
             <div class="buttons w-100 d-flex flex-row justify-content-center align-items-center">
                 <button class="text-medium bg-light" on:click={() => {window.location.href=`/VerMovimientos/${cuenta.id}`;}}>Ver Movimientos</button>
+                {#if !(cuenta.estado=="Deshabilitada")}
                 <button class="text-medium bg-light" on:click={() => {window.location.href=`/AdministrarCuentaBancaria/${cuenta.id}`;}}>Modificar</button>
+                {/if}
             </div>  
         </div> 
 
