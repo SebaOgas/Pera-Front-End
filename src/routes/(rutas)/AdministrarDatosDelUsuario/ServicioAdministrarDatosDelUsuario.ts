@@ -14,16 +14,16 @@ export const ServicioAdministrarDatosDelUsuario = {
             mode: 'cors',
             credentials: "include"
         });
-        if (response.status === 403) {
+        if (response.status !== 200) {
             return await response.text();
         }
         const data : DTOAdminDatosUsuario = await response.json();
         return data;
     },
     
-    modificar: async (dto: DTOAdminDatosUsuario) : Promise<string> => {
+    modificar: async (dto: DTOAdminDatosUsuario) : Promise<DTOAdminDatosUsuario | string> => {
         const response = await fetch(`${BASE_URL}/AdministrarDatosDelUsuario/modificar`, {
-            method: "GET",
+            method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
@@ -32,10 +32,10 @@ export const ServicioAdministrarDatosDelUsuario = {
             body: JSON.stringify(dto),
             credentials: "include"
         });
-        if (response.status === 403) {
+        if (response.status !== 200) {
             return await response.text();
         }
-        const data : string = await response.json();
+        const data : DTOAdminDatosUsuario = await response.json();
         return data;
     }
     

@@ -54,8 +54,8 @@
             }
         }
         error = "";
-        let response : string = await ServicioAdministrarDatosDelUsuario.modificar(dto);
-        if (response !== "") {
+        let response : string | DTOAdminDatosUsuario = await ServicioAdministrarDatosDelUsuario.modificar(dto);
+        if (typeof response === "string") {
             error = response;
             return;
         }
