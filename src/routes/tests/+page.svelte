@@ -3,6 +3,8 @@
     import CheckBox from '$lib/CheckBox.svelte'
     import RadioButton from '$lib/RadioButton.svelte';
 	import ComboBox from '$lib/ComboBox.svelte';
+	import DatePicker from '$lib/DatePicker.svelte';
+    import { formatDate } from '$lib/DatePicker.svelte'
 
     onMount(() => {
         console.log("Hola mundo");
@@ -27,6 +29,10 @@
     }
 
 
+    let value : Date;
+    let start : Date;
+    let end : Date;
+
 </script>
 
 <div class="container-fluid bg-darker text-light text-bigger text-bold">
@@ -47,6 +53,13 @@
 <br>
 
 <input type="email" value="Prueba">
+
+<DatePicker bind:value={value}/>
+<DatePicker time range bind:startDate={start} bind:endDate={end}/>
+
+{formatDate(value)}
+<br>
+{formatDate(start, true)} - {formatDate(end, true)}
 
 <CheckBox label="Checkbox" name="grupo1"/>
 <CheckBox label="Checkbox" name="grupo1" checked/>

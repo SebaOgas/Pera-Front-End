@@ -46,6 +46,12 @@
         position: relative;
     }
 
+    @media (max-width: 575px) {
+        .combobox {
+            width: 100% !important;
+        }
+    }
+
     .ph {
         color: #76951F;
     }
