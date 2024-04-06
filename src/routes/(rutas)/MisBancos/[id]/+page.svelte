@@ -35,7 +35,7 @@
 
     async function transferirDominio() {
         
-        window.location.href = "/TransferirDominio";
+        window.location.href = `/TransferirDominioDeBanco/${dto.nroBanco}`;
     }
 
     async function emitir() {

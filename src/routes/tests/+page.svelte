@@ -8,19 +8,11 @@
 
     onMount(() => {
         console.log("Hola mundo");
-        getRadio();
     })
 
     let boton = "Botón";
 
     let radio = "0";
-    function getRadio() {
-        let el = document.querySelector('input[name="grupo2"]:checked');
-        if(el) {
-            radio = (<HTMLInputElement>el).value;
-        }
-    }
-
 
     let cbValue: string = "";
 
@@ -64,10 +56,8 @@
 <CheckBox label="Checkbox" name="grupo1"/>
 <CheckBox label="Checkbox" name="grupo1" checked/>
 <CheckBox label="Checkbox" name="grupo1"/>
-<RadioButton label="RadioButton" name="grupo2" value="1"/>
-<RadioButton label="RadioButton" name="grupo2" checked value="2"/>
-
-<button on:click={getRadio} class="bg-light text-darker">Calcular</button>
+<RadioButton label="RadioButton" name="grupo2" bind:group={radio} value="1"/>
+<RadioButton label="RadioButton" name="grupo2" bind:group={radio} checked value="2"/>
 
 {radio}
 
