@@ -65,7 +65,7 @@
                 <td>{b.ocupacion}</td>
                 <td>{b.estado}</td>
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <td><img src="/right_arrow.svg" alt=">" class="clickable" on:click={() => {window.location.href = `MisBancos/${b.id}`;}}></td>
+                <td>{#if b.estado !== "Baja"}<img src="/right_arrow.svg" alt=">" class="clickable" on:click={() => {window.location.href = `MisBancos/${b.id}`;}}>{/if}</td>
             </tr>
             {/each}
         </tbody>

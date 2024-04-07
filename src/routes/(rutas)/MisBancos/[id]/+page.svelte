@@ -17,7 +17,8 @@
 		emailDueno: "",
 		baseMonetaria: 0,
 		nombreDueno: "",
-		nroCB: 0
+		nroCB: 0,
+		esDueno: false
 	};
     
     onMount( async () => {
@@ -26,7 +27,6 @@
     let response : DTOBanco | string = await ServicioBanco.get(data.id);
         if (typeof response === "string") {
             error = response;
-            console.log(error)
             //window.location.href ="/";
         } else {
             dto = response;
@@ -45,7 +45,7 @@
 
     async function administrarBanco() {
         
-        window.location.href = "/AdministrarBanco";
+        window.location.href = `/AdministrarBancoPropio/${dto.nroBanco}`;
     }
 
     async function verMovimientos() {
@@ -96,7 +96,9 @@
                     <span class="text-medium text-darker">{dto.usaHabilitacionAutomatica}</span>
                 </div>
             </div>
+            {#if dto.esDueno}
             <button class="bg-light text-darker text-medium" on:click={administrarBanco}>Administrar Banco</button>
+            {/if}
         </div>
         <div style="display: flex; align-items:center; flex-direction:column; justify-content:space-between; gap:20px" class="">
             <div style="display: flex; align-items:center; flex-direction:column; justify-content:space-between" class="mb-2 w-100">
@@ -104,7 +106,9 @@
                     <span class="text-medium text-darker">Dueño</span>
                     <span class="text-medium text-darker">{dto.nombreDueno} (mail: {dto.emailDueno})</span>
                 </div>
+                {#if dto.esDueno}
                 <button class="bg-light text-darker text-medium" on:click={transferirDominio}>Transferir Dominio</button>
+                {/if}
                 <div class="d-flex justify-content-between align-items-center w-100 mb-3">
                     <span class="text-medium text-darker">Base Monetaria</span>
                     <span class="text-medium text-darker"><Money numero={dto.baseMonetaria} color="darker"/></span>
@@ -114,7 +118,9 @@
             <div class="d-flex justify-content-between flex-column" style="gap: 10px">
                 <button class="bg-light text-darker text-medium" on:click={verMovimientos}>Ver Movimientos</button>
                 <button class="bg-light text-darker text-medium" on:click={adminCuentasHab}>Administrar Cuentas Habilitadas</button>
+                {#if dto.esDueno}
                 <button class="bg-light text-darker text-medium" on:click={adminBanqueros}>Administrar Banqueros</button>
+                {/if}
             </div>
         </div>
     </div>
