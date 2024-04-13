@@ -60,7 +60,7 @@
 
     async function adminBanqueros() {
         
-        window.location.href = "/AdministrarBanqueros";
+        window.location.href = `/AdministrarBanqueros/${dto.nroCB}`;
     }
 
 
