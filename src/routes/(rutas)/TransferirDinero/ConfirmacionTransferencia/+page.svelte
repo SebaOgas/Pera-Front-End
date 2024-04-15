@@ -9,7 +9,8 @@
         aliasCBDestino: "",
         monto: 0,
         motivo: "",
-        nroTransferencia: 0
+        nroTransferencia: 0,
+        simbolo: "$"
     };
 
     let finalizado = false;
@@ -86,7 +87,7 @@
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Monto:</span>
-        <span class="text-medium text-darker">{dtoTransferencia.monto}</span>
+        <span class="text-medium text-darker">{dtoTransferencia.simbolo}{dtoTransferencia.monto}</span>
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Motivo:</span>

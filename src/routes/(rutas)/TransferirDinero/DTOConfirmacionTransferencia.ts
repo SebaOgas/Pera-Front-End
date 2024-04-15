@@ -3,5 +3,6 @@ export default interface DTOConfirmacionTransferencia {
     aliasCBDestino: string,
     monto: number,
     motivo: string,
-    nroTransferencia: number
+    nroTransferencia: number,
+    simbolo: string
 }

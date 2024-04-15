@@ -49,10 +49,14 @@
     async function confirmar() {
         let response = await ServicioTransferirDinero.establecerDetalles(dtoDetalles);
         if (typeof response === "string") {
-            error = response;
-            return;
+            if(response!=="OK"){
+                error = response;
+                return;
+            }else{
+                window.location.href = "/TransferirDinero/ConfirmacionTransferencia";
+            }
         }
-        window.location.href = "/TransferirDinero/ConfirmacionTransferencia";
+        
     }
 
     
