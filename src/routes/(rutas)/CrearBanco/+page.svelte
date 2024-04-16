@@ -40,7 +40,6 @@ import type DTOCrearBanco from "./DTOCrearBanco";
 
     async function crearBanco() {
         let resp : string = await ServicioCrearBanco.crear(dto);
-        console.log(resp)
         if (resp.length !== 0) {
             if (!(/[0-9]+/.test(resp))) {
                 error = resp;

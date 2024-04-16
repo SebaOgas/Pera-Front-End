@@ -1,13 +1,14 @@
 <script lang="ts">
     export let label: string = "";
     export let name: string = "";
+    export let group: string = "";
     export let checked: boolean = false;
     export let value: string;
 </script>
 
 
 <label class="radiobutton">
-    <input type="radio" {name} {checked} {value}/>
+    <input type="radio" {name} bind:group={group} {checked} {value}/>
     {label}
 </label>
 

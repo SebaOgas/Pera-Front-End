@@ -55,7 +55,7 @@
             <span class="text-big text-dark">¡Hola, {cuenta.nombreUsuario}!</span>
             <span class="text-medium">Tienes depositado en esta cuenta</span>
             <Money simbolo={cuenta.moneda} numero={cuenta.monto}/>
-            <button class="text-medium bg-light" on:click={() => {window.location.href=`/TransferirDinero/${cuenta.id}`;}}>Transferir</button>
+            <button class="text-medium bg-light" on:click={() => {window.location.href=`/TransferirDinero/${data.id}`;}}>Transferir</button>
         </div>
         <div class="right-col w-100 d-flex flex-column justify-content-start align-items-center">
             <div class="w-100 d-flex flex-column justify-content-start align-items-center">
@@ -98,7 +98,9 @@
 
             <div class="buttons w-100 d-flex flex-row justify-content-center align-items-center">
                 <button class="text-medium bg-light" on:click={() => {window.location.href=`/VerMovimientos/${cuenta.id}`;}}>Ver Movimientos</button>
+                {#if !(cuenta.estado=="Deshabilitada")}
                 <button class="text-medium bg-light" on:click={() => {window.location.href=`/AdministrarCuentaBancaria/${cuenta.id}`;}}>Modificar</button>
+                {/if}
             </div>  
         </div> 
 

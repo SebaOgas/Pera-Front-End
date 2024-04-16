@@ -8,6 +8,7 @@ export default interface DTOBanco{
     nombreDueno: string,
     emailDueno: string,
     baseMonetaria: number,
-    nroCB: number
+    nroCB: number,
+    esDueno: boolean
 
 }
