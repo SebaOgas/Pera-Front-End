@@ -83,10 +83,4 @@
         </div>
     {/if}
 
-    {#if dto?.rol.nombre === "Premium"} 
-        <div class="d-flex flex-column justify-content-center align-items-center w-100" style="gap: 20px;">
-            <button class="bg-darker text-lighter text-small" on:click={cerrarSesion}>Cerrar Sesión</button>
-        </div>
-    {/if}
-
 </div>

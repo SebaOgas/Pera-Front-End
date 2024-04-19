@@ -50,7 +50,7 @@
 
     async function verMovimientos() {
         
-        window.location.href = "/VerMovimientos";
+        window.location.href = `/VerMovimientosDeBanco/${dto.nroBanco}`;
     }
 
     async function adminCuentasHab() {
