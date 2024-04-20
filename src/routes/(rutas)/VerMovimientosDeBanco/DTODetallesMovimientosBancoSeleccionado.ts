@@ -5,8 +5,8 @@ export default interface DTODetallesMovimientosBancoSeleccionado {
     motivo: string,
     nombreTitularDestino: string,
     nombreTitularOrigen: string,
-    nroCBDestino: number,
-    nroCBOrigen: number,
+    nroCBDestino: number | null,
+    nroCBOrigen: number | null,
     nroTransferencia: number
     responsable: string,
     tipo: string

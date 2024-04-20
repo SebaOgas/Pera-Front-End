@@ -55,7 +55,7 @@ export const ServicioVerMovimientosDeBanco = {
         if (response.status !== 200) {
             return await response.text();
         }
-        await response.json();
+        await null;
         return null;
     }
 
