@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { ServicioTransferirDinero } from "../ServicioTransferirDinero";
+	import { ServicioRealizarTransferencia } from "../ServicioRealizarTransferencia";
 	import type DTOConfirmacionTransferencia from "../DTOConfirmacionTransferencia";
 
 
     let dtoTransferencia : DTOConfirmacionTransferencia = {
-        aliasCBOrigen: "",
-        aliasCBDestino: "",
+        nroCBOrigen: 0,
+        nroCBDestino: 0,
         monto: 0,
-        motivo: "",
-        nroTransferencia: 0,
-        simbolo: "$"
+        motivo: ""
     };
+
+    let nroTransferencia: number = 0;
 
     let finalizado = false;
 
@@ -31,7 +31,7 @@
             window.location.href = "/";
         }
 
-        let response = await ServicioTransferirDinero.obtenerDetalles();
+        let response = await ServicioRealizarTransferencia.getDatosConfirmacionTransferencia();
         if (typeof response === "string") {
             error = response;
             return;
@@ -41,13 +41,13 @@
     });
 
     async function confirmar() {
-        let response = await ServicioTransferirDinero.confirmar(true);
+        let response = await ServicioRealizarTransferencia.confirmar(true);
         if (typeof response === "string") {
             error = response;
             return;
         }
 
-        dtoTransferencia = response;
+        nroTransferencia = response;
         finalizado = true;
     }
     
@@ -61,11 +61,11 @@
     {#if !finalizado}
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">De:</span>
-        <span class="text-medium text-darker">{dtoTransferencia.aliasCBOrigen}</span>
+        <span class="text-medium text-darker">{dtoTransferencia.nroCBOrigen}</span>
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Para:</span>
-        <span class="text-medium text-darker">{dtoTransferencia.aliasCBDestino}</span>
+        <span class="text-medium text-darker">{dtoTransferencia.nroCBDestino}</span>
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Monto:</span>
@@ -79,15 +79,15 @@
     <h2 class="text-center text-dark text-bold">Transferencia exitosa</h2>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">De:</span>
-        <span class="text-medium text-darker">{dtoTransferencia.aliasCBOrigen}</span>
+        <span class="text-medium text-darker">{dtoTransferencia.nroCBOrigen}</span>
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Para:</span>
-        <span class="text-medium text-darker">{dtoTransferencia.aliasCBDestino}</span>
+        <span class="text-medium text-darker">{dtoTransferencia.nroCBDestino}</span>
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Monto:</span>
-        <span class="text-medium text-darker">{dtoTransferencia.simbolo}{dtoTransferencia.monto}</span>
+        <span class="text-medium text-darker">{"$"}{dtoTransferencia.monto}</span>
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Motivo:</span>
@@ -95,7 +95,7 @@
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Transferencia numero:</span>
-        <span class="text-medium text-darker">{dtoTransferencia.nroTransferencia}</span>
+        <span class="text-medium text-darker">{nroTransferencia}</span>
     </div>
     {/if}
 

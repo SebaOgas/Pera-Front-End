@@ -1,8 +1,6 @@
 export default interface DTOConfirmacionTransferencia {
-    aliasCBOrigen: string,
-    aliasCBDestino: string,
+    nroCBOrigen: number,
+    nroCBDestino: number,
     monto: number,
-    motivo: string,
-    nroTransferencia: number,
-    simbolo: string
+    motivo: string
 }

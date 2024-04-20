@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { ServicioTransferirDinero } from "../ServicioTransferirDinero.js";
+	import { ServicioRealizarTransferencia } from "../ServicioRealizarTransferencia";
 
     let dato: string | number;
     dato= "";
     dato = 0;
+
+    let nroCuenta: number = 0;
+    let aliasCuenta: string = "";
 
     export let data;
 
@@ -22,10 +25,21 @@
             window.location.href = "/";
         }
 
-        ServicioTransferirDinero.almacenarCBOrigen(data.nroCB);
+        ServicioRealizarTransferencia.almacenarCBOrigen(data.nroCB);
     });
 
     async function continuar(dato: string | number) {
+        if(typeof dato === "string"){
+            aliasCuenta = dato.toString();
+            ServicioRealizarTransferencia.ingresarAlias(aliasCuenta);
+            console.log("String")
+        }else{
+            if(typeof dato === "number"){
+                nroCuenta = dato;
+                ServicioRealizarTransferencia.ingresarCB(nroCuenta);
+                console.log("nroCB")
+            }
+        }
         window.location.href = "/TransferirDinero/IngresarMonto";
     }
 
