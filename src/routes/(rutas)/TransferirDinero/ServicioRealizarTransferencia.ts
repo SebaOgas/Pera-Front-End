@@ -19,7 +19,7 @@ export const ServicioRealizarTransferencia = {
         const data = await response.text();
         return data;
     },
-    ingresarCB: async (nroCB: number) : Promise<string> => {
+    ingresarCB: async (nroCB: number) : Promise<null | string> => {
         const response = await fetch(`${BASE_URL}/TransferirDinero/ingresarCB?nroCB=${nroCB}`, {
             method: "POST",
             headers: {
@@ -29,10 +29,12 @@ export const ServicioRealizarTransferencia = {
             credentials: "include",
             body: JSON.stringify(nroCB)
         });
-        const data = await response.text();
-        return data;
+        if (response.status !== 200) {
+            return await response.text();
+        }
+        return null;
     },
-    ingresarAlias: async (alias: string) : Promise<string> => {
+    ingresarAlias: async (alias: string) : Promise<null | string> => {
         const response = await fetch(`${BASE_URL}/TransferirDinero/ingresarAlias?alias=${alias}`, {
             method: "POST",
             headers: {
@@ -42,8 +44,10 @@ export const ServicioRealizarTransferencia = {
             credentials: "include",
             body: JSON.stringify(alias)
         });
-        const data = await response.text();
-        return data;
+        if (response.status !== 200) {
+            return await response.text();
+        }
+        return null;
     },
     getDatosIngresarMonto: async () : Promise<DTODatosIngresarMonto|string> => {
         const response = await fetch(`${BASE_URL}/TransferirDinero/getDatosIngresarMonto`, {
@@ -61,7 +65,7 @@ export const ServicioRealizarTransferencia = {
         const data : DTODatosIngresarMonto = await response.json();
         return data;
     },
-    ingresarMontoYMotivo: async (dto: DTOMontoMotivo) : Promise<string> => {
+    ingresarMontoYMotivo: async (dto: DTOMontoMotivo) : Promise<null | string> => {
         const response = await fetch(`${BASE_URL}/TransferirDinero/ingresarMontoYMotivo`, {
             method: "POST",
             headers: {
@@ -71,8 +75,10 @@ export const ServicioRealizarTransferencia = {
             credentials: "include",
             body: JSON.stringify(dto)
         });
-        const data = await response.text();
-        return data;
+        if (response.status !== 200) {
+            return await response.text();
+        }
+        return null;
     },
     getDatosConfirmacionTransferencia: async () : Promise<DTOConfirmacionTransferencia|string> => {
         const response = await fetch(`${BASE_URL}/TransferirDinero/getDatosConfirmacionTransferencia`, {
@@ -91,16 +97,17 @@ export const ServicioRealizarTransferencia = {
         return data;
     },
     confirmar: async (confirmacion: boolean) : Promise<number|string> => {
-        const response = await fetch(`${BASE_URL}/TransferirDinero/confirmar`, {
+        const response = await fetch(`${BASE_URL}/TransferirDinero/confirmar?confirmacion=${confirmacion}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             mode: 'cors',
-            credentials: "include",
-            body: JSON.stringify(confirmacion)
+            credentials: "include"
         });
-        const data = await response.text();
-        return data;
+        if (response.status !== 200) {
+            return await response.text();
+        }
+        return Number.parseInt(await response.text());
     }
 }

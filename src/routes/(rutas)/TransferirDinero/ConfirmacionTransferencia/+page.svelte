@@ -107,4 +107,7 @@
         <button class="text-medium bg-light" on:click={() => {window.location.href = "/MisCuentasBancarias";}}>Finalizar</button>
         {/if}
     </div>
+    <div class="d-flex justify-content-between w-100 mb-3">
+        <span class="text-medium text-darker">{error}</span>
+    </div>
 </div>

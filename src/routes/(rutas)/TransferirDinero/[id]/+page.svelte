@@ -2,9 +2,8 @@
 	import { onMount } from "svelte";
 	import { ServicioRealizarTransferencia } from "../ServicioRealizarTransferencia";
 
-    let dato: string | number;
+    let dato: string;
     dato= "";
-    dato = 0;
 
     let nroCuenta: number = 0;
     let aliasCuenta: string = "";
@@ -28,17 +27,13 @@
         ServicioRealizarTransferencia.almacenarCBOrigen(data.nroCB);
     });
 
-    async function continuar(dato: string | number) {
-        if(typeof dato === "string"){
-            aliasCuenta = dato.toString();
-            ServicioRealizarTransferencia.ingresarAlias(aliasCuenta);
-            console.log("String")
-        }else{
-            if(typeof dato === "number"){
-                nroCuenta = dato;
-                ServicioRealizarTransferencia.ingresarCB(nroCuenta);
-                console.log("nroCB")
-            }
+    async function continuar(dato: string) {
+        
+        if(!/^[0-9]+$/.test(dato)){
+            let ret = ServicioRealizarTransferencia.ingresarAlias(dato);
+            
+        }else{            
+            ServicioRealizarTransferencia.ingresarCB(Number.parseInt(dato));
         }
         window.location.href = "/TransferirDinero/IngresarMonto";
     }
