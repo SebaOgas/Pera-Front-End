@@ -55,7 +55,7 @@
 
     async function adminCuentasHab() {
         
-        window.location.href = "/AdministrarCuentasHabilitadas";
+        window.location.href = `/AdministrarHabilitacionCuentasBancarias/${dto.nroBanco}`;
     }
 
     async function adminBanqueros() {
