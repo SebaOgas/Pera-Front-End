@@ -79,8 +79,11 @@
     {#if dto?.rol.nombre === "No Premium"} 
         <div class="d-flex flex-column justify-content-center align-items-center w-100" style="gap: 20px;">
             <button class="bg-darker text-light text-big" on:click={suscribirseAPremium}>Obtener Premium</button>
-            <button class="bg-darker text-lighter text-small" on:click={cerrarSesion}>Cerrar Sesión</button>
         </div>
     {/if}
+    <div class="d-flex flex-column justify-content-center align-items-center w-100" style="gap: 20px;">
+        <button class="bg-darker text-lighter text-small" on:click={cerrarSesion}>Cerrar Sesión</button>
+    </div>
+
 
 </div>
