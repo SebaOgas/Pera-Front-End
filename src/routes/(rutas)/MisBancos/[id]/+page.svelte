@@ -50,12 +50,12 @@
 
     async function verMovimientos() {
         
-        window.location.href = "/VerMovimientos";
+        window.location.href = `/VerMovimientosDeBanco/${dto.nroBanco}`;
     }
 
     async function adminCuentasHab() {
         
-        window.location.href = "/AdministrarCuentasHabilitadas";
+        window.location.href = `/AdministrarHabilitacionCuentasBancarias/${dto.nroBanco}`;
     }
 
     async function adminBanqueros() {

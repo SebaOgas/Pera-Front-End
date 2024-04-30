@@ -1,18 +1,8 @@
 <script lang="ts">
-	import { onMount } from "svelte";
 	import type DTOAuthResponse from "../RegistrarUsuario/DTOAuthResponse";
 	import type DTOLoginRequest from "./DTOLoginRequest";
 	import { ServicioLoguearUsuario } from "./ServicioLoguearUsuario";
     
-    onMount( async () => {
-        let permisos = localStorage.getItem("permisos")!;
-        if (JSON.parse(permisos).length === 0) {
-            return;
-        }else{
-            window.location.href = "/Usuario";
-        }
-    });
-
     let dto : DTOLoginRequest = {
         email: "",
         password: ""
