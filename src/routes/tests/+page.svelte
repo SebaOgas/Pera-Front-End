@@ -5,6 +5,7 @@
 	import ComboBox from '$lib/ComboBox.svelte';
 	import DatePicker from '$lib/DatePicker.svelte';
     import { formatDate } from '$lib/DatePicker.svelte'
+	import Histogram, { type item } from '$lib/Histogram.svelte';
 
     onMount(() => {
         console.log("Hola mundo");
@@ -25,6 +26,25 @@
     let start : Date;
     let end : Date;
 
+    let hc : item[] = [
+        {
+            label: "A",
+            values: [64, 8]
+        },
+        {
+            label: "B",
+            values: [32, 21]
+        },
+        {
+            label: "C",
+            values: [24, 31]
+        },
+        {
+            label: "D",
+            values: [9,7]
+        },
+    ];
+
 </script>
 
 <div class="container-fluid bg-darker text-light text-bigger text-bold">
@@ -40,7 +60,7 @@
 
 <a href="/hola">Link</a>
 
-
+<Histogram content={hc} xLabel="<span style=color:#9DF069;>X</span>D" yLabel="Y" barColors={["#9DF069", "#76951F"]} barBorderColors={["#76951F", "#142D2D"]}/>
 
 <br>
 
