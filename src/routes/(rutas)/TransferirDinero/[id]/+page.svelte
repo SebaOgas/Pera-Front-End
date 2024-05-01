@@ -5,12 +5,6 @@
     let dato: string;
     dato= "";
 
-    let nroCuenta: number = 0;
-    let aliasCuenta: string = "";
-
-    let nroCuenta: number = 0;
-    let aliasCuenta: string = "";
-
     export let data;
 
     let permisos : string[] = [];

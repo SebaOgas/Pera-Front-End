@@ -73,7 +73,7 @@
     <h2 class="text-center text-dark text-bold text-bigger">Movimientos</h2>
     <h4 class="text-center text-dark text-bold text-big">Cuenta Nº {dto.nroCuenta}</h4>
     
-    <div class="filters d-flex flex-row justify-content-between w-100">
+    <div class="filters d-flex flex-row justify-content-between w-100 flex-wrap mb-4">
         <div class="d-flex flex-row justify-content-between align-items-center">
             <label class="text-dark d-flex flex-row justify-content-between align-items-center"><span>Nombre del Usuario </span> <input type="text" bind:value={filtros.filtroNombreUsuario}/></label>
         </div>
@@ -127,7 +127,8 @@
 
 <style>
     .filters, .filters>* {
-        gap: 20px;
+        row-gap: 8px;
+        column-gap: 20px;
     }
 
     label {
