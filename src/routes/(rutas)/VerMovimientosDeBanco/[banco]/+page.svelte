@@ -81,7 +81,7 @@
     <h2 class="text-center text-dark text-bold text-bigger">Movimientos</h2>
     <h4 class="text-center text-dark text-bold text-big">Banco {dto.nombreBanco}</h4>
     
-    <div class="filters d-flex flex-row justify-content-between w-100">
+    <div class="filters d-flex flex-row justify-content-between w-100 flex-wrap mb-4">
         <div class="d-flex flex-row justify-content-between align-items-center">
             <CheckBox bind:checked={filtros.emisiones} label="Emisiones" classes="text-dark"/>
             <CheckBox bind:checked={filtros.transferencias} label="Transferencias" classes="text-dark"/>
@@ -139,7 +139,8 @@
 
 <style>
     .filters, .filters>* {
-        gap: 20px;
+        row-gap: 8px;
+        column-gap: 20px;
     }
 
     label {

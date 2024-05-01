@@ -2,19 +2,18 @@
 	import { onMount } from "svelte";
 	import { ServicioAdministrarDatosDelUsuario } from "./ServicioAdministrarDatosDelUsuario";
 	import type DTOAdminDatosUsuario from "./DTOAdminDatosUsuario";
-	import CheckBox from "$lib/CheckBox.svelte";
     
     let error : string = "";
     let dto : DTOAdminDatosUsuario = {
 		id: 0,
 		email: "",
-		nombre: "",
-		contrasena: "",
-		cambiarContrasena: false
+		nombre: ""
 	};
     let repetirContrasena : string;
     let permisos : string[] = [];
     let finalizado = false;
+
+    let mail : string = "";
 
     onMount( async () => {
         let permisosString = localStorage.getItem("permisos");
@@ -33,6 +32,7 @@
             //window.location.href ="/";
         } else {
             dto = response;
+            mail = response.email;
         }
     });
 
@@ -42,17 +42,13 @@
         window.location.href = "/Usuario";
     }
 
+    async function cambiarContrasena() {
+        
+        window.location.href = `/CambiarContrasena/${mail}`;
+    }
+
     async function modificar() {
-        if (dto.cambiarContrasena) {
-            if (dto.contrasena === "" || dto.contrasena === undefined) {
-                error = "Ingrese la nueva contraseña";
-                return;
-            }
-            if (dto.contrasena !== repetirContrasena) {
-                error = "Las contraseñas no coinciden";
-                return;
-            }
-        }
+
         error = "";
         let response : string | DTOAdminDatosUsuario = await ServicioAdministrarDatosDelUsuario.modificar(dto);
         if (typeof response === "string") {
@@ -80,24 +76,14 @@
             <span class="text-medium text-darker">Correo electrónico</span>
             <input type="text" bind:value="{dto.email}">
         </div>
-        <div class="d-flex justify-content-between w-100 mb-3">
-            <CheckBox bind:checked={dto.cambiarContrasena} label="Cambiar Contraseña" classes="text-medium"/>
-        </div>
-        {#if dto.cambiarContrasena}
-            <div class="d-flex justify-content-between w-100 mb-3">
-                <span class="text-medium text-darker">Nueva Contraseña</span>
-                <input type="password" bind:value="{dto.contrasena}">
-            </div>
-            <div class="d-flex justify-content-between w-100 mb-3">
-                <span class="text-medium text-darker">Repetir Nuevo Contraseña</span>
-                <input type="password" bind:value="{repetirContrasena}">
-            </div>
-        {/if}
         <div class="d-flex justify-content-center w-100 mb-3">
             <span class="text-medium text-dark">{error}</span>
         </div>  
         <div class="d-flex justify-content-between w-100 mb-3">
-            <button class="bg-light text-darker text-medium" on:click={back}>Atrás</button>
+            <div class="d-flex flex-row">
+                <button class="bg-darker text-lighter text-medium me-2" on:click={back}>Cancelar</button>
+                <button class="bg-dark text-lighter text-medium" on:click={cambiarContrasena}>Cambiar Contraseña</button>
+            </div>
             <button class="bg-light text-darker text-medium" on:click={modificar}>Aceptar</button>
         </div>
     {:else}

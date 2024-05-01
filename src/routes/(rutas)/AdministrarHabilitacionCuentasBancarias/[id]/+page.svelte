@@ -59,7 +59,7 @@
             return;
         }
 
-        window.location.href = `/MisBancos`;
+        window.location.href = `/MisBancos/${data.id}`;
     }
     
 </script>
