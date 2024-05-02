@@ -26,7 +26,7 @@
         }
         permisos = JSON.parse(permisosString);
 
-        if(!permisos.includes("ADMIN_BANCOS_PROPIOS")) {
+        if(!permisos.includes("ADMIN_CUENTAS_BANCARIAS_PROPIAS")) {
             window.location.href = "/";
         }
 
