@@ -54,7 +54,8 @@
             return;
         }
 
-        localStorage.setItem("permisos", JSON.stringify(response))
+        //No te estás cambiando el rol a vos mismo
+        //localStorage.setItem("permisos", JSON.stringify(response))
 
         window.history.back();
     }

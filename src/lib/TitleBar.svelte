@@ -45,7 +45,7 @@
                 <a href="/Usuario" class="text-light">Mi Perfil</a>
             {/if}
             {#if permisos.includes("ADMIN_BANCOS")}
-                <a href="/AdministrarBanco" class="text-light">Bancos</a>
+                <a href="/AdministrarBancos" class="text-light">Bancos</a>
             {/if}
             {#if permisos.includes("ADMIN_USUARIOS")}
                 <a href="/AdministrarUsuarios" class="text-light">Usuarios</a>
