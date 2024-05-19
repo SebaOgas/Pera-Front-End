@@ -26,7 +26,7 @@
     let tiposReporte = [];
     tiposReporte[TipoReporte.CUENTAS_POR_BANCO] = "Cuentas Por Banco";
     tiposReporte[TipoReporte.BANCOS_ABIERTOS_CERRADOS] = "Bancos Abiertos y Cerrados";
-    tiposReporte[TipoReporte.CANTIDAD_TRANSACCIONES] = "Cantidad de Transacciones";
+    tiposReporte[TipoReporte.MONTOS_TRANSFERIDOS] = "Montos Transferidos";
     tiposReporte[TipoReporte.CANTIDAD_REGISTRACIONES] = "Cantidad de Registraciones";
     tiposReporte[TipoReporte.CANTIDAD_SUSCRIPCIONES] = "Cantidad de Suscripciones";
 
@@ -37,9 +37,13 @@
     let mesPasado = new Date();
     mesPasado.setDate(hoy.getDate() - 30);
     mesPasado.setHours(0, 0, 0, 0);
+    let manana = new Date();
+    manana.setDate(hoy.getDate() + 1);
+    manana.setHours(0, 0, 0, 0);
 
     function selectReporte(tipo: TipoReporte) {
         reporte_selec = tipo;
+        dto = null;
     }
 
     let datos : any[] = [];
@@ -51,31 +55,31 @@
     };
     datos[TipoReporte.BANCOS_ABIERTOS_CERRADOS] = {
         fechaInicio: mesPasado,
-        fechaFin: hoy,
+        fechaFin: manana,
         intervalo: 5,
-        xLabel: "N.° Bancos <span style=color:#9DF069;>Abiertos</span> vs Cerrados",
-        yLabel: "Fechas"
+        yLabel: "N.° Bancos <span style=color:#9DF069;>Abiertos</span> vs Cerrados",
+        xLabel: "Fechas"
     };
-    datos[TipoReporte.CANTIDAD_TRANSACCIONES] = {
+    datos[TipoReporte.MONTOS_TRANSFERIDOS] = {
         fechaInicio: mesPasado,
-        fechaFin: hoy,
+        fechaFin: manana,
         intervalo: 5,
         nroBanco: null,
-        xLabel: "N.° Transacciones",
-        yLabel: "Fechas"
+        yLabel: "Monto Transferido",
+        xLabel: "Fechas"
     };
     datos[TipoReporte.CANTIDAD_REGISTRACIONES] = {
         fechaInicio: mesPasado,
-        fechaFin: hoy,
+        fechaFin: manana,
         intervalo: 5,
-        xLabel: "N.° Registraciones",
-        yLabel: "Fechas"
+        yLabel: "N.° Registraciones",
+        xLabel: "Fechas"
     };
     datos[TipoReporte.CANTIDAD_SUSCRIPCIONES] = {
         fechaInicio: mesPasado,
-        fechaFin: hoy,
-        xLabel: "N.° Suscripciones",
-        yLabel: "Plan"
+        fechaFin: manana,
+        yLabel: "N.° Suscripciones",
+        xLabel: "Plan"
     };
     
 
@@ -88,20 +92,20 @@
                 response = await ServicioVerReportes.cuentasPorBanco(datos[reporte_selec].fecha, datos[reporte_selec].intervalo);
                 break;
             case TipoReporte.BANCOS_ABIERTOS_CERRADOS:
-                response = await ServicioVerReportes.bancosAbiertosCerrados(datos[reporte_selec].fechaInicio, datos[reporte_selec].fechaInicio, datos[reporte_selec].intervalo);
+                response = await ServicioVerReportes.bancosAbiertosCerrados(datos[reporte_selec].fechaInicio, datos[reporte_selec].fechaFin, datos[reporte_selec].intervalo);
                 break;
-            case TipoReporte.CANTIDAD_TRANSACCIONES:
+            case TipoReporte.MONTOS_TRANSFERIDOS:
                 if(datos[reporte_selec].nroBanco === null) {
                     error = "Ingrese el número del banco";
                     return;
                 }
-                response = await ServicioVerReportes.cantidadTransacciones(datos[reporte_selec].fechaInicio, datos[reporte_selec].fechaInicio, datos[reporte_selec].intervalo, datos[reporte_selec].nroBanco);
+                response = await ServicioVerReportes.montosTransferidos(datos[reporte_selec].fechaInicio, datos[reporte_selec].fechaFin, datos[reporte_selec].intervalo, datos[reporte_selec].nroBanco);
                 break;
             case TipoReporte.CANTIDAD_REGISTRACIONES:
-                response = await ServicioVerReportes.cantidadRegistraciones(datos[reporte_selec].fechaInicio, datos[reporte_selec].fechaInicio, datos[reporte_selec].intervalo);
+                response = await ServicioVerReportes.cantidadRegistraciones(datos[reporte_selec].fechaInicio, datos[reporte_selec].fechaFin, datos[reporte_selec].intervalo);
                 break;
             case TipoReporte.CANTIDAD_SUSCRIPCIONES:
-                response = await ServicioVerReportes.cantidadSuscripciones(datos[reporte_selec].fechaInicio, datos[reporte_selec].fechaInicio);
+                response = await ServicioVerReportes.cantidadSuscripciones(datos[reporte_selec].fechaInicio, datos[reporte_selec].fechaFin);
                 break;
             default:
                 error = "Tipo de reporte inválido"
@@ -137,7 +141,7 @@
             <DatePicker width="180px" range={true} bind:startDate={datos[reporte_selec].fechaInicio} bind:endDate={datos[reporte_selec].fechaFin}/>
             <label class="ms-2">Intervalo (días): <input type="number" bind:value={datos[reporte_selec].intervalo} min={1}/></label>
             <button class="bg-light text-darker ms-2" on:click={plot}>Aceptar</button>
-        {:else if reporte_selec === TipoReporte.CANTIDAD_TRANSACCIONES}
+        {:else if reporte_selec === TipoReporte.MONTOS_TRANSFERIDOS}
             <DatePicker width="180px" range={true} bind:startDate={datos[reporte_selec].fechaInicio} bind:endDate={datos[reporte_selec].fechaFin}/>
             <label class="ms-2">N.° Banco: <input type="number" bind:value={datos[reporte_selec].nroBanco} min={0}/></label>
             <label class="ms-2">Intervalo: <input type="number" bind:value={datos[reporte_selec].intervalo} min={1}/></label>
@@ -153,7 +157,8 @@
     </div>
 
     {#if dto !== null}
-        <Histogram content={dto.items} width="100%" xLabel={datos[reporte_selec].xLabel} yLabel={datos[reporte_selec].yLabel}/>
+        <h3 class="text-left text-dark text-bold">{dto.titulo !== undefined && dto.titulo !== null ? dto.titulo : ""}</h3>
+        <Histogram content={dto.items} width="100%" xLabel={datos[reporte_selec].xLabel} yLabel={datos[reporte_selec].yLabel} barColors={["#9DF069", "#76951F"]} barBorderColors={["#76951F", "#142D2D"]}/>
     {/if}
     
     <div class="d-flex justify-content-center w-100 mb-3">

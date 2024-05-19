@@ -32,7 +32,7 @@
             {#each c.values as v, ix}
                 <div class="subbar" style="height: {v/max*100}%; background-color: {barColors[ix]}; border-right-color: {barBorderColors[ix]};">
                     <div class="value" style="color: {valueColors[ix]};">
-                        {v}
+                        {v !== 0 && v !== null ? v : ""}
                     </div>
                 </div>
             {/each}
@@ -42,7 +42,7 @@
         </div>
     {/each}
     <div class="x-label text-dark">{@html xLabel}</div>
-    <div class="y-label text-dark">{yLabel}</div>
+    <div class="y-label text-dark">{@html yLabel}</div>
 </div>
 
 

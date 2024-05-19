@@ -44,6 +44,8 @@
         justify-content: space-between;
         align-items: center;
         position: relative;
+        z-index: 1;
+        cursor: default;
     }
 
     @media (max-width: 575px) {

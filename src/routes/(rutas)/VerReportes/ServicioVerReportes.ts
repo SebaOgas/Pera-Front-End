@@ -40,8 +40,8 @@ export const ServicioVerReportes = {
         return data;
     },
     
-    cantidadTransacciones: async (fechaInicio: Date, fechaFin: Date, intervalo: number, nroBanco: number) : Promise<DTOHistograma | string> => {
-        const response = await fetch(`${BASE_URL}/VerReportes/cantidadTransacciones?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}&intervalo=${intervalo}&nroBanco=${nroBanco}`, {
+    montosTransferidos: async (fechaInicio: Date, fechaFin: Date, intervalo: number, nroBanco: number) : Promise<DTOHistograma | string> => {
+        const response = await fetch(`${BASE_URL}/VerReportes/montosTransferidos?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}&intervalo=${intervalo}&nroBanco=${nroBanco}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
