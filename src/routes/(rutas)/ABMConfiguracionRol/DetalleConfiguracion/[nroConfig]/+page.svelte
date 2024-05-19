@@ -44,7 +44,7 @@
     }
 
     async function aceptar(){
-        window.history.back();
+        window.location.href = `/ABMConfiguracionRol`;
     }
 
 
@@ -77,9 +77,11 @@
                 </div>
                 <div class="d-flex justify-content-between w-100 mb-3">
                     <span class="text-medium text-darker">Permisos</span>
-                    {#each dto.permisos as p}
-                    <span class="text-medium text-darker">{p}</span>
-                    {/each}
+                    <div style="display: flex; flex-direction:column;">
+                        {#each dto.permisos as p}
+                            <span class="text-medium text-darker">{p}</span>
+                        {/each}
+                    </div>
                 </div>
             </div>
         </div>

@@ -109,16 +109,18 @@
                 </div>
                 <div class="d-flex justify-content-between w-100 mb-3">
                     <span class="text-medium text-darker">Permisos</span>
-                    {#each dto.permisos as p}
-                    <CheckBox label="{p}" bind:value={permisoN}/>
-                    {/each}
+                    <div style="display: flex; flex-direction:column; gap:10px;">
+                        {#each dto.permisos as p}
+                            <CheckBox label="{p}" bind:value={permisoN}/>
+                        {/each}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="d-flex justify-content-end w-100 mb-3" style="gap: 20px;">
-        <button class="bg-darker text-lighter text-medium" on:click={()=>{window.history.back()}}>Cancelar</button>
+        <button class="bg-darker text-lighter text-medium" on:click={()=>{window.location.href = "/ABMConfiguracionRol";}}>Cancelar</button>
         <button class="bg-light text-darker text-medium" on:click={aceptar}>Aceptar</button>
     </div>
 
