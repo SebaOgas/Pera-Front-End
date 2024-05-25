@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-    export const formatDate = (date: Date, showTime: boolean = false) => {
+    export const formatDate = (date: Date | null, showTime: boolean = false) => {
         if (date === null) return "";
         if (showTime) {
             return new Date(date).toLocaleString("es-AR").slice(0, -3);
@@ -14,10 +14,10 @@
 
     export let range : boolean = false;
 
-    export let value : Date = new Date();
+    export let value : Date | null = new Date();
 
-    export let startDate : Date = new Date();
-    export let endDate : Date = new Date();
+    export let startDate : Date | null = new Date();
+    export let endDate : Date | null = new Date();
 
     export let time : boolean = false;
 
