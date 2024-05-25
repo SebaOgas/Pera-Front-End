@@ -7,11 +7,7 @@
     let error = "";
     let permisos : string[] = [];
 
-    let dto : DTOABMCPP[] = [{
-		nroConfig: 0,
-        fechaInicio: new Date,
-        fechaFin: new Date
-	}];
+    let dto : DTOABMCPP[] = [];
 
     onMount(async () => {
         let permisosString = localStorage.getItem("permisos");
