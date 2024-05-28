@@ -3,6 +3,7 @@
 	import Money from "$lib/Money.svelte";
 	import type DTOAltaConfiguracionRol from "../../DTOAltaConfiguracionRol";
 	import { ServicioABMConfiguracionRol } from "../../ServicioABMConfiguracionRol";
+	import { formatDate } from "$lib/DatePicker.svelte";
 
     export let data;
 
@@ -69,11 +70,11 @@
                 </div>
                 <div class="d-flex justify-content-between w-100 mb-3">
                     <span class="text-medium text-darker">Fecha de Inicio</span>
-                    <span class="text-medium text-darker">{dto.fechaInicio}</span>
+                    <span class="text-medium text-darker">{formatDate(dto.fechaInicio)}</span>
                 </div>
                 <div class="d-flex justify-content-between w-100 mb-3">
                     <span class="text-medium text-darker">Fecha de Fin</span>
-                    <span class="text-medium text-darker">{dto.fechaFin}</span>
+                    <span class="text-medium text-darker">{formatDate(dto.fechaFin)}</span>
                 </div>
                 <div class="d-flex justify-content-between w-100 mb-3">
                     <span class="text-medium text-darker">Permisos</span>

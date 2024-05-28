@@ -17,6 +17,12 @@
         permisos: []
 	};
 
+    interface IDictionary {
+        [index: string]: boolean;
+    }
+
+    let auxPermisos = {} as IDictionary;
+
     let dtoConfirmacion: DTOAltaConfiguracionRol = {
         nroConfig: 0,
         nombreRol: "",
@@ -49,15 +55,23 @@
         }
 
         dto = response;
+
+        dto.permisos.forEach(p => {
+            auxPermisos[p] = false;
+        });
     }
 
     async function aceptar(){
 
-        addPermiso();
-        dtoConfirmacion.permisos = permisosSeleccionados;
 
-        console.log(permisosSeleccionados);
-        
+        dto.permisos.forEach(p => {
+            if(auxPermisos[p]) {
+                dtoConfirmacion.permisos.push(p);
+            }
+        })
+
+        console.log(dtoConfirmacion.permisos)
+
         let response = await ServicioABMConfiguracionRol.confirmar(dtoConfirmacion);
         if (typeof response === "string") {
             error = response;
@@ -71,11 +85,6 @@
         dtoConfirmacion.nombreRol = rol;
     }
 
-    function addPermiso() {
-        if (!permisosSeleccionados.includes(permisoN)) {
-            permisosSeleccionados = [...permisosSeleccionados, permisoN];
-        }
-    }
 
 
 </script>
@@ -111,7 +120,7 @@
                     <span class="text-medium text-darker">Permisos</span>
                     <div style="display: flex; flex-direction:column; gap:10px;">
                         {#each dto.permisos as p}
-                            <CheckBox label="{p}" bind:value={permisoN}/>
+                            <CheckBox label="{p}" bind:checked={auxPermisos[p]}/>
                         {/each}
                     </div>
                 </div>

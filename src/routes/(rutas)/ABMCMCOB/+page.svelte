@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import type DTOABMCMCOB from './DTOABMCMCOB.js';
 	import { ServicioABMCMCOB } from './ServicioABMCMCOB.js';
+	import { formatDate } from '$lib/DatePicker.svelte';
     
     let error = "";
     let permisos : string[] = [];
@@ -71,8 +72,8 @@
             {#each dto as d}
                 <tr style="border-bottom: 1px solid #000000;">
                     <td>{d.idCMCOB}</td>
-                    <td>{d.fechaInicio}</td>
-                    <td>{d.fechaFin}</td>
+                    <td>{formatDate(d.fechaInicio)}</td>
+                    <td>{formatDate(d.fechaFin)}</td>
                     <td>{d.cantidad}</td>
                 </tr>
             {/each}

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import type DTOABMPSM from './DTOABMPSM.js';
 	import { ServicioABMPSM } from './ServicioABMPSM.js';
+	import { formatDate } from '$lib/DatePicker.svelte';
     
     let error = "";
     let permisos : string[] = [];
@@ -72,8 +73,8 @@
                 <tr style="border-bottom: 1px solid #000000;">
                     <td>{d.nroSimbolo}</td>
                     <td>{d.simbolo}</td>
-                    <td>{d.fechaInicio}</td>
-                    <td>{d.fechaFin}</td>
+                    <td>{formatDate(d.fechaInicio)}</td>
+                    <td>{formatDate(d.fechaFin)}</td>
                 </tr>
             {/each}
         </tbody>

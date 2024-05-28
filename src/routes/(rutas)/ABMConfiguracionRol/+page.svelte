@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import type DTOABMConfiguracionRol from './DTOABMConfiguracionRol.js';
 	import { ServicioABMConfiguracionRol } from './ServicioABMConfiguracionRol.js';
+	import { formatDate } from '$lib/DatePicker.svelte';
     
     let error = "";
     let permisos : string[] = [];
@@ -78,8 +79,8 @@
                 <tr style="border-bottom: 1px solid #000000;">
                     <td>{d.nroConfig}</td>
                     <td>{d.nombreRol}</td>
-                    <td>{d.fechaInicio}</td>
-                    <td>{d.fechaFin}</td>
+                    <td>{formatDate(d.fechaInicio)}</td>
+                    <td>{formatDate(d.fechaFin)}</td>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
                     <td><img src="/eye.svg" alt="Ver" class="clickable icon" on:click={()=>{detalleConfiguracion(d.nroConfig)}}/>
