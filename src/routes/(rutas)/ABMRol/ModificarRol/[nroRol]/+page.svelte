@@ -70,7 +70,7 @@
     </div>
     
     <div class="d-flex justify-content-end w-100 mb-3" style="gap: 20px;">
-        <button class="bg-darker text-lighter text-medium" on:click={()=>{window.history.back()}}>Cancelar</button>
+        <button class="bg-darker text-lighter text-medium" on:click={()=>{window.location.href = `/ABMRol`;}}>Cancelar</button>
         <button class="bg-light text-darker text-medium" on:click={confirmar}>Aceptar</button>
     </div>
 
