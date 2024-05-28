@@ -3,7 +3,7 @@
 	import type DTODetalleBanco from "../DTODetalleBanco.js";
 	import { ServicioAdministrarBancos } from "../ServicioAdministrarBancos.js";
     import CheckBox from '$lib/CheckBox.svelte';
-    import DatePicker from '$lib/DatePicker.svelte';
+    import DatePicker, { formatDate } from '$lib/DatePicker.svelte';
 
     let permisos : string[] = [];
 
@@ -13,6 +13,7 @@
 		id: 0,
 		nombre: "",
 		habilitado: false,
+        alta: new Date(),
 		baja: null,
 		nombreDueno: "",
 		mailDueno: ""
@@ -93,9 +94,13 @@
         <span class="text-medium text-darker"><CheckBox bind:checked={dto.habilitado}/></span>
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
+        <span class="text-medium text-darker">Fecha de alta</span>
+        <span class="text-medium text-darker">{formatDate(dto.alta, true)}</span>
+    </div>
+    <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker"><CheckBox bind:checked={baja} label="Fecha de baja"/></span>
         {#if baja}
-            <DatePicker bind:value={fechaBaja}/>
+            <DatePicker width="180px" bind:value={fechaBaja}/>
         {/if}
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
