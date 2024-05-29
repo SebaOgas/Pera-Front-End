@@ -21,15 +21,16 @@ export const ServicioABMPSM = {
         return data;
     },
 
-    altaPSM: async (simbolo: string) : Promise<null | string> => {
-        const response = await fetch(`${BASE_URL}/ABMPSM/altaPSM?simbolo=${simbolo}`, {
+    altaPSM: async (dto: DTOABMPSM) : Promise<null | string> => {
+        const response = await fetch(`${BASE_URL}/ABMPSM/altaPSM`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem("token")
             },
             mode: 'cors',
-            credentials: "include"
+            credentials: "include",
+            body: JSON.stringify(dto)
         });
         if (response.status !== 200) {
             return await response.text();
