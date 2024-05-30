@@ -1,10 +1,18 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ServicioABMPSM } from '../ServicioABMPSM';
+	import DatePicker from '$lib/DatePicker.svelte';
+	import type DTOABMPSM from '../DTOABMPSM';
     
     let error = "";
     let permisos : string[] = [];
-    let simbolo : string = "";
+    
+    let dto : DTOABMPSM = {
+		nroSimbolo: 0,
+        simbolo: "",
+        fechaInicio: new Date,
+        fechaFin: new Date
+	};
 
     onMount(async () => {
         let permisosString = localStorage.getItem("permisos");
@@ -22,7 +30,7 @@
 
     async function altaPSM() {
         
-        let response = await ServicioABMPSM.altaPSM(simbolo);
+        let response = await ServicioABMPSM.altaPSM(dto);
         if (typeof response === "string") {
             error = response;
             return;
@@ -41,9 +49,23 @@
     <h4 class="text-center text-dark text-bold text-big">Simbolos de Monedas</h4>
     <h4 class="text-center text-dark text-bold text-big">Alta</h4>
     
-    <div class="d-flex justify-content-evenly w-100 mb-3">
-        <span class="text-medium text-darker">Simbolo</span>
-        <input type="text" placeholder="simbolo..." bind:value={simbolo}>
+    <div>
+        <div style="display: flex; align-items:center; flex-direction:column">
+            <div class="w-100">
+                <div class="d-flex justify-content-between w-100 mb-3">
+                    <span class="text-medium text-darker">Simbolo</span>
+                    <input type="text" bind:value={dto.simbolo}>
+                </div>
+                <div class="d-flex justify-content-between w-100 mb-3">
+                    <span class="text-medium text-darker">Fecha de Alta</span>
+                    <DatePicker bind:value={dto.fechaInicio}/>
+                </div>
+                <div class="d-flex justify-content-between w-100 mb-3">
+                    <span class="text-medium text-darker">Fecha de Baja</span>
+                    <DatePicker bind:value={dto.fechaFin}/>
+                </div>
+            </div>
+        </div>
     </div>
     
     <div class="d-flex justify-content-end w-100 mb-3" style="gap: 20px;">
