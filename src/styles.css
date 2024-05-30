@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 body {
     color: #142D2D !important;
     background-color: #F5F5F5 !important;
     font-size: 12px !important;
     font-weight: normal;
+    font-family: Inter, Tahoma, Verdana;
 }
 
 ::selection {
