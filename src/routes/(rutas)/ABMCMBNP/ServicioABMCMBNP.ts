@@ -1,11 +1,11 @@
-import type DTOABMPSM from "./DTOABMPSM";
+import type DTOABMCMBNP from "./DTOABMCMBNP";
 
 const BASE_URL = "http://localhost:8080";
 
-export const ServicioABMPSM = {
+export const ServicioABMCMBNP = {
     
-    getSimbolosMoneda: async () : Promise<DTOABMPSM[] | string> => {
-        const response = await fetch(`${BASE_URL}/ABMPSM/getSimbolosMoneda`, {
+    getCantidadesBNP: async () : Promise<DTOABMCMBNP[] | string> => {
+        const response = await fetch(`${BASE_URL}/ABMCMBNP/getCantidades`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -17,12 +17,12 @@ export const ServicioABMPSM = {
         if (response.status !== 200) {
             return await response.text();
         }
-        const data : DTOABMPSM[] = await response.json();
+        const data : DTOABMCMBNP[] = await response.json();
         return data;
     },
 
-    altaPSM: async (dto: DTOABMPSM) : Promise<null | string> => {
-        const response = await fetch(`${BASE_URL}/ABMPSM/altaPSM`, {
+    confirmarBNP: async (dto: DTOABMCMBNP) : Promise<null | string> => {
+        const response = await fetch(`${BASE_URL}/ABMCMBNP/confirmar`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,9 @@ export const ServicioABMPSM = {
         if (response.status !== 200) {
             return await response.text();
         }
+        
         return null;
     }
+
 
 }

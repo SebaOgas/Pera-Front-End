@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type DTOABMConfiguracionRol from './DTOABMConfiguracionRol.js';
-	import { ServicioABMConfiguracionRol } from './ServicioABMConfiguracionRol.js';
+	import type DTOABMCMBNP from './DTOABMCMBNP.js';
+	import { ServicioABMCMBNP } from './ServicioABMCMBNP.js';
 	import { formatDate } from '$lib/DatePicker.svelte';
     
     let error = "";
     let permisos : string[] = [];
 
-    let dto : DTOABMConfiguracionRol[] = [{
-		nroConfig: 0,
-        nombreRol: "",
+    let dto : DTOABMCMBNP[] = [{
+		idCMBNP: 0,
         fechaInicio: new Date,
-        fechaFin: new Date
+        fechaFin: new Date,
+        cantidad: ""
 	}];
 
     onMount(async () => {
@@ -26,13 +26,13 @@
             window.location.href = "/";
         }
 
-        getConfiguraciones();
+        getCantidades();
 
     });
 
-    async function getConfiguraciones() {
+    async function getCantidades() {
     
-        let response = await ServicioABMConfiguracionRol.getConfiguraciones();
+        let response = await ServicioABMCMBNP.getCantidadesBNP();
         if (typeof response === "string") {
             error = response;
             return;
@@ -42,14 +42,9 @@
 
     }
 
-    async function altaConfiguracion() {
-        window.location.href = `/ABMConfiguracionRol/AltaConfiguracion`;
+    async function altaCantidad() {
+        window.location.href = `/ABMCMBNP/AltaCantidad`;
     }
-
-    async function detalleConfiguracion(nroConfig: number) {
-        window.location.href = `/ABMConfiguracionRol/DetalleConfiguracion/${nroConfig}`;
-    }
-
     
 </script>
 
@@ -57,33 +52,29 @@
 
 <div class="container w-100 h-100">
     <h2 class="text-center text-dark text-bold text-bigger">Administrar Parametro</h2>
-    <h4 class="text-center text-dark text-bold text-big">Permisos correspondientes a los roles</h4>
+    <h4 class="text-center text-dark text-bold text-big">Cantidad maxima de bancos para usuarios no premium</h4>
     
     <div class="d-flex justify-content-end w-100 mb-3">
-        <button class=" bg-light text-darker text-medium" on:click={altaConfiguracion}>Nuevo</button>
+        <button class=" bg-light text-darker text-medium" on:click={altaCantidad}>Nuevo</button>
     </div>
     
 
     <table class="w-100">
         <thead style="border-bottom: 1px solid #000000;">
             <tr>
-                <th>N.°</th>
-                <th>Rol</th>
+                <th>Id</th>
                 <th>Fecha de Inicio</th>
                 <th>Fecha de Fin</th>
-                <th>Info</th>
+                <th>Cantidad</th>
             </tr>
         </thead>
         <tbody>
             {#each dto as d}
                 <tr style="border-bottom: 1px solid #000000;">
-                    <td>{d.nroConfig}</td>
-                    <td>{d.nombreRol}</td>
+                    <td>{d.idCMBNP}</td>
                     <td>{formatDate(d.fechaInicio)}</td>
                     <td>{formatDate(d.fechaFin)}</td>
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                    <td><img src="/eye.svg" alt="Ver" class="clickable icon" on:click={()=>{detalleConfiguracion(d.nroConfig)}}/>
+                    <td>{d.cantidad}</td>
                 </tr>
             {/each}
         </tbody>

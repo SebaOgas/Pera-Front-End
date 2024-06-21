@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { ServicioABMPSM } from '../ServicioABMPSM';
-	import DatePicker from '$lib/DatePicker.svelte';
-	import type DTOABMPSM from '../DTOABMPSM';
-    
-    let error = "";
-    let permisos : string[] = [];
-    
-    let dto : DTOABMPSM = {
-		nroSimbolo: 0,
-        simbolo: "",
-        fechaInicio: new Date,
-        fechaFin: new Date
-	};
+	import { onMount } from "svelte";
+	import DatePicker from "$lib/DatePicker.svelte";
+	import type DTOABMCMCOB from "../DTOABMCMCOB";
+	import { ServicioABMCMCOB } from "../ServicioABMCMCOB";
 
-    onMount(async () => {
+    let error : string = "";
+    let permisos : string[] = [];
+
+    let dto : DTOABMCMCOB = {
+		idCMCOB: 0,
+        fechaInicio: new Date,
+        fechaFin: new Date,
+        cantidad: ""
+	};
+    
+    onMount( async () => {
         let permisosString = localStorage.getItem("permisos");
         if (permisosString === null) {
             window.location.href = "/LoguearUsuario";
@@ -28,57 +28,60 @@
 
     });
 
-    async function altaPSM() {
-        
-        let response = await ServicioABMPSM.altaPSM(dto);
+    async function confirmar() {
+
+        let response = await ServicioABMCMCOB.confirmarCOB(dto);
         if (typeof response === "string") {
             error = response;
             return;
         }
 
         window.history.back();
-
     }
-    
+
 </script>
-
-
 
 <div class="container w-100 h-100">
     <h2 class="text-center text-dark text-bold text-bigger">Administrar Parametro</h2>
-    <h4 class="text-center text-dark text-bold text-big">Simbolos de Monedas</h4>
+    <h4 class="text-center text-dark text-bold text-big">Cantidad maxima de cuentas en total que puede tener un usuario no premium</h4>
+
     <h4 class="text-center text-dark text-bold text-big">Alta</h4>
-    
-    <div>
+
+    <div class="main d-flex justify-content-between">
         <div style="display: flex; align-items:center; flex-direction:column">
             <div class="w-100">
                 <div class="d-flex justify-content-between w-100 mb-3">
-                    <span class="text-medium text-darker">Simbolo</span>
-                    <input type="text" bind:value={dto.simbolo}>
-                </div>
-                <div class="d-flex justify-content-between w-100 mb-3">
-                    <span class="text-medium text-darker">Fecha de Alta</span>
+                    <span class="text-medium text-darker">Fecha de Inicio</span>
                     <DatePicker bind:value={dto.fechaInicio}/>
                 </div>
                 <div class="d-flex justify-content-between w-100 mb-3">
-                    <span class="text-medium text-darker">Fecha de Baja</span>
+                    <span class="text-medium text-darker">Fecha de Fin</span>
                     <DatePicker bind:value={dto.fechaFin}/>
+                </div>
+                <div class="d-flex justify-content-between w-100 mb-3">
+                    <span class="text-medium text-darker">Cantidad</span>
+                    <input type="text" bind:value={dto.cantidad}>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="d-flex justify-content-end w-100 mb-3" style="gap: 20px;">
         <button class="bg-darker text-lighter text-medium" on:click={()=>{window.history.back()}}>Cancelar</button>
-        <button class="bg-light text-darker text-medium" on:click={altaPSM}>Aceptar</button>
+        <button class="bg-light text-darker text-medium" on:click={confirmar}>Aceptar</button>
     </div>
 
-    <span class="d-block w-100 text-center text-dark text-medium">{error}</span>
-
-
+    <div class="d-flex justify-content-center w-100 mb-3">
+        <span class="text-medium text-dark">{error}</span>
+    </div>
 </div>
 
 
 <style>
-    
+    .main {
+        gap: 40px;
+    }
+    .main>* {
+        flex: 1 1 auto;
+    }
 </style>
