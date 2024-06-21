@@ -12,9 +12,9 @@
     nroTransferencia: 0,
     tipoTransferencia: "",
     fechaTransferencia: new Date,
-    nroCBOrigen: 0,
+    nroCBOrigen: null,
     titularCBOrigen: "",
-    nroCBDestino: 0,
+    nroCBDestino: null,
     titularCBDestino: "",
     montoTransferencia: 0,
     estadoTransferencia: "",
@@ -30,7 +30,7 @@
         }
         permisos = JSON.parse(permisosString);
 
-        if(!permisos.includes("ADMIN_BANCOS_PROPIOS")) {
+        if(!permisos.includes("ADMIN_CUENTAS_BANCARIAS_PROPIAS")) {
             window.location.href = "/";
         }
 
@@ -62,13 +62,13 @@
         Fecha: {formatDate(new Date(dto.fechaTransferencia), true)}
     </div>
     <div class="text-dark text-medium">
-        N.° Cuenta Bancaria Origen: {dto.nroCBOrigen}
+        N.° Cuenta Bancaria Origen: {dto.nroCBOrigen != null ? dto.nroCBOrigen : "-"}
     </div>
     <div class="text-dark text-medium">
         Titular Cuenta Bancaria Origen: {dto.titularCBOrigen}
     </div>
     <div class="text-dark text-medium">
-        N.° Cuenta Bancaria Destino: {dto.nroCBDestino}
+        N.° Cuenta Bancaria Destino: {dto.nroCBDestino != null ? dto.nroCBDestino : "-"}
     </div>
     <div class="text-dark text-medium">
         Titular Cuenta Bancaria Destino: {dto.titularCBDestino}

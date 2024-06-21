@@ -54,7 +54,7 @@
                     <li>Cantidad de Bancos de los que se es dueño</li>
                     <li>Cantidad de Cuentas Bancarias de las que se es titular</li>
                 </ul>
-                Sin embargo, puede quitar estas limitaciones con nuestro plan Premium, por solo $XXX por mes.
+                Sin embargo, puede quitar estas limitaciones con nuestro plan Premium, por solo una módica suma.
                 <div class="d-flex flex-row justify-content-center">
                     <button class="text-big" on:click={() => {window.location.href = "/SuscribirseAPremium"}}>Obtener Premium</button>
                 </div>
@@ -67,7 +67,7 @@
             <h4 class="text-bigger">Ayuda</h4>
             <div class="descrip text-big p-1 p-md-0 text-center text-bold">
                 <p>
-                    Puede acceder a una guía exhaustiva respecto al uso de Pera en el siguiente <a href="/">enlace</a>.
+                    Puede acceder a una guía exhaustiva respecto al uso de Pera en el siguiente <a href="/Ayuda">enlace</a>.
                 </p>
                 <p>
                     Ante cualquier duda o preocupación, también puede escribirnos a <a href="mailto:mail@gmail.com">mail@gmail.com</a> y le contestaremos tan pronto como nos sea posible.

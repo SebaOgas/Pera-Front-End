@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import type DTOABMPermiso from './DTOABMPermiso';
 	import { ServicioABMPermiso } from './ServicioABMPermiso';
+	import { formatDate } from '$lib/DatePicker.svelte';
     
     let error = "";
     let permisos : string[] = [];
@@ -61,7 +62,7 @@
                 <tr style="border-bottom: 1px solid #000000;">
                     <td>{d.nroPermiso}</td>
                     <td>{d.nombrePermiso}</td>
-                    <td>{d.fechaBajaPermiso}</td>
+                    <td>{formatDate(d.fechaBajaPermiso)}</td>
                 </tr>
             {/each}
         </tbody>

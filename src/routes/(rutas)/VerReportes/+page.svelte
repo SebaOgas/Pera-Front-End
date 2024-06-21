@@ -158,7 +158,7 @@
 
     {#if dto !== null}
         <h3 class="text-left text-dark text-bold">{dto.titulo !== undefined && dto.titulo !== null ? dto.titulo : ""}</h3>
-        <Histogram content={dto.items} width="90%" xLabel={datos[reporte_selec].xLabel} yLabel={datos[reporte_selec].yLabel} barColors={["#9DF069", "#76951F"]} barBorderColors={["#76951F", "#142D2D"]}/>
+        <Histogram bind:content={dto.items} width="90%" xLabel={datos[reporte_selec].xLabel} yLabel={datos[reporte_selec].yLabel} barColors={["#9DF069", "#76951F"]} barBorderColors={["#76951F", "#142D2D"]}/>
     {/if}
     
     <div class="d-flex justify-content-center w-100 mb-3">
