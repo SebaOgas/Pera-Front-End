@@ -20,11 +20,22 @@
 		nroCB: 0,
 		esDueno: false
 	};
+
+    let permisos : string[] = [];
     
     onMount( async () => {
+        let permisosString = localStorage.getItem("permisos");
+        if (permisosString === null) {
+            window.location.href = "/LoguearUsuario";
+            return;
+        }
+        permisos = JSON.parse(permisosString);
 
+        if(!permisos.includes("ADMIN_BANCOS_PROPIOS")) {
+            window.location.href = "/";
+        }
 
-    let response : DTOBanco | string = await ServicioBanco.get(data.id);
+        let response : DTOBanco | string = await ServicioBanco.get(data.id);
         if (typeof response === "string") {
             error = response;
             //window.location.href ="/";

@@ -27,7 +27,7 @@
         }
         permisos = JSON.parse(permisosString);
 
-        if(!permisos.includes("ADMIN_BANCOS_PROPIOS")) {
+        if(!permisos.includes("ADMIN_CUENTAS_BANCARIAS_PROPIAS")) {
             window.location.href = "/";
         }
 
@@ -62,10 +62,12 @@
         <span class="text-medium text-darker">Para:</span>
         <span class="text-medium text-darker">{dtoIngresarMonto.aliasCuentaDestino}</span>
     </div>
+    {#if dtoIngresarMonto.nroCuentaDestino != null}
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Con numero de cuenta:</span>
         <span class="text-medium text-darker">{dtoIngresarMonto.nroCuentaDestino}</span>
     </div>
+    {/if}
     <div class="d-flex justify-content-center w-100">
         <Money editable={true} bind:numero={dtoMontoMotivo.monto} simbolo={"$"}/>
     </div>

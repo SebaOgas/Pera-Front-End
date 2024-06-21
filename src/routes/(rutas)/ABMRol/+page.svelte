@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import type DTOABMRol from './DTOABMRol.js';
 	import { ServicioABMRol } from './ServicioABMRol.js';
+	import { formatDate } from '$lib/DatePicker.svelte';
     
     let error = "";
     let permisos : string[] = [];
@@ -87,7 +88,7 @@
                 <tr style="border-bottom: 1px solid #000000;">
                     <td>{d.nroRol}</td>
                     <td>{d.nombreRol}</td>
-                    <td>{d.fechaBajaRol}</td>
+                    <td>{formatDate(d.fechaBajaRol)}</td>
                     {#if !(d.deBaja)}
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->

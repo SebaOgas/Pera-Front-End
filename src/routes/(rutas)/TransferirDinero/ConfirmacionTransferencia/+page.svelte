@@ -27,7 +27,7 @@
         }
         permisos = JSON.parse(permisosString);
 
-        if(!permisos.includes("ADMIN_BANCOS_PROPIOS")) {
+        if(!permisos.includes("ADMIN_CUENTAS_BANCARIAS_PROPIAS")) {
             window.location.href = "/";
         }
 
@@ -65,7 +65,7 @@
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Para:</span>
-        <span class="text-medium text-darker">{dtoTransferencia.nroCBDestino}</span>
+        <span class="text-medium text-darker">{dtoTransferencia.nroCBDestino != null ? dtoTransferencia.nroCBDestino : "Banco"}</span>
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Monto:</span>
@@ -83,7 +83,7 @@
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Para:</span>
-        <span class="text-medium text-darker">{dtoTransferencia.nroCBDestino}</span>
+        <span class="text-medium text-darker">{dtoTransferencia.nroCBDestino != null ? dtoTransferencia.nroCBDestino : "Banco"}</span>
     </div>
     <div class="d-flex justify-content-between w-100 mb-3">
         <span class="text-medium text-darker">Monto:</span>

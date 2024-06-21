@@ -29,7 +29,7 @@
         <span class="text-medium text-dark">{error}</span>
     </div>  
     <div class="d-flex justify-content-between w-100">
-        <button class="bg-darker text-lighter">Cancelar</button>
+        <button class="bg-darker text-lighter" on:click={() => {window.location.href = "/"}}>Cancelar</button>
         <button class="bg-light text-darker" on:click={ingresarCodigo}>Aceptar</button>
     </div>   
 </div>

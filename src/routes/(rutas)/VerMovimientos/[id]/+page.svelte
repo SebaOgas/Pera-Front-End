@@ -107,7 +107,7 @@
                     <td>{d.nroTransferencia}</td>
                     <td>{formatDate(new Date(d.fechaTransferencia), true)}</td>
                     <td>{d.tipoTransferencia}</td>
-                    <td>{d.nroCBTransferencia}</td>
+                    <td>{d.nroCBTransferencia != null ? d.nroCBTransferencia : "-"}</td>
                     <td>{d.titularCB}</td>
                     <td>{d.montoTransferencia}</td>
                     <td>{d.estadoTransferencia}</td>

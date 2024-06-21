@@ -39,6 +39,10 @@ import type DTOCrearBanco from "./DTOCrearBanco";
     
 
     async function crearBanco() {
+        if(dto.usarPassword && dto.password.trim() === "") {
+            error = "La contraseña no puede quedar en blanco";
+            return;
+        }
         let resp : string = await ServicioCrearBanco.crear(dto);
         if (resp.length !== 0) {
             if (!(/[0-9]+/.test(resp))) {
