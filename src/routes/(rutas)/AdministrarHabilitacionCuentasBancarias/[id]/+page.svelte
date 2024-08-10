@@ -3,6 +3,7 @@
 	import type DTOAdministrarHabilitacionDeCuentasBancarias from '../DTOAdministrarHabilitacionDeCuentasBancarias.js';
 	import CheckBox from '$lib/CheckBox.svelte';
 	import { ServicioHabilitacionCuentasBancarias } from '../ServicioHabilitacionCuentasBancarias.js';
+	import { formatDate } from '$lib/DatePicker.svelte';
 
 
 
@@ -94,7 +95,7 @@
                     <td>{detalle.nroCB}</td>
                     <td>{detalle.nombreTitular}</td>
                     <td>{detalle.monto}</td>
-                    <td>{detalle.fechaBaja}</td>
+                    <td>{formatDate(detalle.fechaBaja)}</td>
                     <td><span><CheckBox bind:checked={detalle.habilitada}/></span></td>
                 </tr>
             {/each}
