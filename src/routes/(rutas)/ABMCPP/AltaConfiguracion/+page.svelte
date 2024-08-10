@@ -86,7 +86,7 @@
 </script>
 
 <div class="container w-75 h-100">
-    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parametro</h2>
+    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parámetro</h2>
     <h4 class="text-center text-dark text-bold text-big">Planes Premium</h4>
 
     <h4 class="text-center text-dark text-bold text-big">Alta</h4>

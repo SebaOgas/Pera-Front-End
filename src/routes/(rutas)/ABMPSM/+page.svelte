@@ -51,8 +51,8 @@
 
 
 <div class="container w-100 h-100">
-    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parametros</h2>
-    <h4 class="text-center text-dark text-bold text-big">Simbolos de monedas</h4>
+    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parámetro</h2>
+    <h4 class="text-center text-dark text-bold text-big">Símbolos de monedas</h4>
     
     <div class="d-flex justify-content-end w-100 mb-3">
         <button class=" bg-light text-darker text-medium" on:click={altaPSM}>Nuevo</button>
@@ -63,7 +63,7 @@
         <thead style="border-bottom: 1px solid #000000;">
             <tr>
                 <th>N.°</th>
-                <th>Simbolo</th>
+                <th>Símbolo</th>
                 <th>Fecha de Inicio</th>
                 <th>Fecha de Fin</th>
             </tr>

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import type DTOABMMDP from './DTOABMMDP';
 	import { ServicioABMMDP } from './ServicioABMMDP';
+	import { formatDate } from '$lib/DatePicker.svelte';
 
     let error = "";
     let permisos : string[] = [];
@@ -62,7 +63,7 @@
 
 
 <div class="container w-100 h-100">
-    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parametro</h2>
+    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parámetro</h2>
     <h4 class="text-center text-dark text-bold text-big">Medios de pago</h4>
     
     <div class="d-flex justify-content-end w-100 mb-3">
@@ -84,12 +85,14 @@
                 <tr style="border-bottom: 1px solid #000000;">
                     <td>{d.nroMDP}</td>
                     <td>{d.nombreMDP}</td>
-                    <td>{d.fechaBajaMDP}</td>
+                    <td>{formatDate(d.fechaBajaMDP)}</td>
+                    <td>
                     {#if !(d.deBaja)}
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                    <td><img src="/green_cross.svg" alt="Baja" class="clickable" on:click={() => {darBaja(d.nroMDP)}}></td>
+                    <img src="/green_cross.svg" alt="Baja" class="clickable" on:click={() => {darBaja(d.nroMDP)}}>
                     {/if}
+                    </td>
                 </tr>
             {/each}
         </tbody>

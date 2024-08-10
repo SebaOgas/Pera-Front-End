@@ -90,7 +90,7 @@
 </script>
 
 <div class="container w-100 h-100">
-    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parametro</h2>
+    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parámetro</h2>
     <h4 class="text-center text-dark text-bold text-big">Permisos correspondientes a los roles</h4>
 
     <h4 class="text-center text-dark text-bold text-big">Alta</h4>

@@ -45,17 +45,13 @@
 
 
 <div class="container w-100 h-100">
-    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parametro</h2>
-    <h4 class="text-center text-dark text-bold text-big">Simbolos de Monedas</h4>
+    <h2 class="text-center text-dark text-bold text-bigger">Administrar Parámetro</h2>
+    <h4 class="text-center text-dark text-bold text-big">Símbolos de Monedas</h4>
     <h4 class="text-center text-dark text-bold text-big">Alta</h4>
     
     <div>
         <div style="display: flex; align-items:center; flex-direction:column">
             <div class="w-100">
-                <div class="d-flex justify-content-between w-100 mb-3">
-                    <span class="text-medium text-darker">Simbolo</span>
-                    <input type="text" bind:value={dto.simbolo}>
-                </div>
                 <div class="d-flex justify-content-between w-100 mb-3">
                     <span class="text-medium text-darker">Fecha de Alta</span>
                     <DatePicker bind:value={dto.fechaInicio}/>
@@ -63,6 +59,10 @@
                 <div class="d-flex justify-content-between w-100 mb-3">
                     <span class="text-medium text-darker">Fecha de Baja</span>
                     <DatePicker bind:value={dto.fechaFin}/>
+                </div>
+                <div class="d-flex justify-content-between w-100 mb-3">
+                    <span class="text-medium text-darker">Símbolo</span>
+                    <input type="text" bind:value={dto.simbolo}>
                 </div>
             </div>
         </div>
