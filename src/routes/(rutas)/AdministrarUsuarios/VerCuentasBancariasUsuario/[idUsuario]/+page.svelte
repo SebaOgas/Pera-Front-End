@@ -130,11 +130,13 @@
                     <td>{d.nroCB}</td>
                     <td>{d.nombreBanco}</td>
                     <td>{d.monto}</td>
-                    {#if d.cuentaHabilitada}
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                    <td><img src="/green_cross.svg" alt="Baja" class="clickable" on:click={() => {darBaja(d.nroCB)}}></td>
-                    {/if}
+                    <td>
+                        {#if d.cuentaHabilitada}
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                        <img src="/green_cross.svg" alt="Baja" class="clickable" on:click={() => {darBaja(d.nroCB)}}>
+                        {/if}
+                    </td>
                 </tr>
             {/each}
         {/if}
