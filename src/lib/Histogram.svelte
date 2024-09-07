@@ -30,7 +30,7 @@
     {#each content as c}
         <div class="bar d-flex flex-column justify-content-end">
             {#each c.values as v, ix}
-                <div class="subbar" style="height: {v !== null ? v : 0 /max*100}%; background-color: {barColors[ix]}; border-right-color: {barBorderColors[ix]};">
+                <div class="subbar" style="height: {(v !== null ? v : 0 )/max*100}%; background-color: {barColors[ix]}; border-right-color: {barBorderColors[ix]};">
                     <div class="value" style="color: {valueColors[ix]};">
                         {v !== 0 && v !== null ? v : ""}
                     </div>

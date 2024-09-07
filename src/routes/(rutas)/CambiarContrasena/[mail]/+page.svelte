@@ -1,10 +1,19 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
     import { ServicioCambiarContrasena } from '../ServicioCambiarContrasena.js';
     
     export let data;
 
     let codigo : string = "";
     let error : string = "";
+
+    onMount(async () => {
+        let datos = await ServicioCambiarContrasena.enviarCodigo(data.mail);
+        if (typeof datos === "string") {
+            error = datos;
+            return;
+        }
+    });
 
 
     async function ingresarCodigo() {

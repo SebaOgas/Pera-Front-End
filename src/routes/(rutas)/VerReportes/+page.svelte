@@ -3,9 +3,11 @@
 	import type DTOHistograma from "./DTOHistograma";
 	import { TipoReporte } from "./TipoReporte";
 	import ComboBox from "$lib/ComboBox.svelte";
-	import DatePicker from "$lib/DatePicker.svelte";
+	import DatePicker, { formatDate } from "$lib/DatePicker.svelte";
 	import Histogram from "$lib/Histogram.svelte";
 	import { ServicioVerReportes } from "./ServicioVerReportes";
+	import SearchBar from "$lib/SearchBar.svelte";
+	import type DTOBancoBuscado from "./DTOBancoBuscado";
     
     let error : string = "";
     let dto : DTOHistograma | null = null;
@@ -41,11 +43,17 @@
     manana.setDate(hoy.getDate() + 1);
     manana.setHours(0, 0, 0, 0);
 
+    let nombreBanco = "";
+    let bancos : DTOBancoBuscado[] = [];
+
     function selectReporte(tipo: TipoReporte) {
         reporte_selec = tipo;
         dto = null;
+        bancos = [];
+        nombreBanco = "";
     }
 
+    
     let datos : any[] = [];
     datos[TipoReporte.CUENTAS_POR_BANCO] = {
         fecha: hoy,
@@ -83,7 +91,9 @@
     };
     
 
+    let fechaReporte : Date = new Date();
     async function plot() {
+        fechaReporte = new Date();
         error = "";
         let response : DTOHistograma | string;
 
@@ -118,6 +128,19 @@
             dto = response;
         }
     }
+    
+    async function getBancos(nombreBanco: string) {
+        let response = await ServicioVerReportes.getBancos(nombreBanco);
+        if (typeof response === "string") {
+            error = response;
+            return;
+        }
+        error = "";
+        if (response.length === 0) {
+            error = "No se encontró ningún banco";
+        }
+        bancos = response;
+    }
 
 </script>
 
@@ -143,7 +166,21 @@
             <button class="bg-light text-darker ms-2" on:click={plot}>Aceptar</button>
         {:else if reporte_selec === TipoReporte.MONTOS_TRANSFERIDOS}
             <DatePicker width="180px" range={true} bind:startDate={datos[reporte_selec].fechaInicio} bind:endDate={datos[reporte_selec].fechaFin}/>
-            <label class="ms-2">N.° Banco: <input type="number" bind:value={datos[reporte_selec].nroBanco} min={0}/></label>
+            <!--<label class="ms-2">N.° Banco: <input type="number" bind:value={datos[reporte_selec].nroBanco} min={0}/></label>-->
+            <!-- svelte-ignore a11y-label-has-associated-control -->
+            <label class="gaps ms-2 d-flex justify-content-between align-items-center">
+                <span>Banco: </span>
+                <SearchBar width="120px" action={getBancos}/>
+                {#if bancos.length !== 0}
+                    <ComboBox placeholder="Seleccione el banco" value="{nombreBanco}" width={100}>
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
+                        {#each bancos as b}
+                            <!-- svelte-ignore a11y-click-events-have-key-events -->
+                            <span on:click={() => {datos[reporte_selec].nroBanco = b.id; nombreBanco = b.nombre}}>{b.nombre}</span>
+                        {/each}
+                    </ComboBox>
+                {/if}
+            </label>
             <label class="ms-2">Intervalo: <input type="number" bind:value={datos[reporte_selec].intervalo} min={1}/></label>
             <button class="bg-light text-darker ms-2" on:click={plot}>Aceptar</button>
         {:else if reporte_selec === TipoReporte.CANTIDAD_REGISTRACIONES}
@@ -158,12 +195,18 @@
 
     {#if dto !== null}
         <h3 class="text-left text-dark text-bold">{dto.titulo !== undefined && dto.titulo !== null ? dto.titulo : ""}</h3>
+        <div class="text-end">
+            Generado el {formatDate(fechaReporte, true)}
+        </div>    
+        <div class="ms-4 me-4">
+
         <Histogram bind:content={dto.items} width="90%" xLabel={datos[reporte_selec].xLabel} yLabel={datos[reporte_selec].yLabel} barColors={["#9DF069", "#76951F"]} barBorderColors={["#76951F", "#142D2D"]}/>
+        </div>
     {/if}
     
     <div class="d-flex justify-content-center w-100 mb-3">
         <span class="text-medium text-dark">{error}</span>
-    </div>  
+    </div>   
 
 </div>
 
@@ -171,5 +214,9 @@
 <style>
     input[type=number] {
         width: 50px;
+    }
+
+    .gaps {
+        gap: 7pt;
     }
 </style>

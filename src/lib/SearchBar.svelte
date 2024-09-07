@@ -16,8 +16,8 @@
 </script>
 
 
-<div class="searchbar d-flex flex-row align-items-center {classes}" style="width: {width};">
-    <input type="text" placeholder="{placeholder}" bind:this={input} on:keydown={evt => checkEnter(evt)}>
+<div class="searchbar d-flex flex-row align-items-center {classes}">
+    <input type="text" placeholder="{placeholder}" bind:this={input} style="width: {width};" on:keydown={evt => checkEnter(evt)}>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img src="/search.svg" alt="Buscar" on:click={() => action(input.value)}>

@@ -8,11 +8,7 @@
 
     async function enviarCodigo() {
 
-        let datos = await ServicioCambiarContrasena.enviarCodigo(mail);
-        if (typeof datos === "string") {
-            error = datos;
-            return;
-        }
+        
         window.location.href = `/CambiarContrasena/${mail}`;
     }
 

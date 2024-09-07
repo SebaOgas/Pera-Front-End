@@ -1,3 +1,4 @@
+import type DTOBancoBuscado from "./DTOBancoBuscado";
 import type DTOHistograma from "./DTOHistograma";
 
 
@@ -89,6 +90,23 @@ export const ServicioVerReportes = {
         }
         const data : DTOHistograma = await response.json();
         return data;
-    }
+    },
 
+
+    getBancos: async (nombreBanco: string) : Promise<DTOBancoBuscado[] | string> => {
+        const response = await fetch(`${BASE_URL}/VerReportes/getBancos?nombreBanco=${nombreBanco}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+            },
+            mode: 'cors',
+            credentials: "include"
+        });
+        if (response.status !== 200) {
+            return await response.text();
+        }
+        const data : DTOBancoBuscado[] = await response.json();
+        return data;
+    },
 }

@@ -2,7 +2,7 @@
     export const formatDate = (date: Date | null, showTime: boolean = false) => {
         if (date === null) return "";
         if (showTime) {
-            return new Date(date).toLocaleString("es-AR").slice(0, -3);
+            return new Date(date).toLocaleString("es-AR", { hour12: false }).slice(0, -3);
         } else {
             return new Date(date).toLocaleDateString("es-AR");
         }
@@ -50,7 +50,7 @@
     'Mayo',
     'Junio',
     'Julio',
-    'Augosto',
+    'Agosto',
     'Septiembre',
     'Octubre',
     'Noviembre',
