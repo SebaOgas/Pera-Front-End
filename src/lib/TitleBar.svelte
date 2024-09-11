@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
     let menuShown = false;
     let permisos : string[] = [];
+    let nombre : string | null = null;
     onMount(() => {
         let menuIcon = document.getElementById("menuIcon");
         menuIcon?.addEventListener("click", () => {
@@ -23,6 +24,7 @@
             permisosString = "[]";
         }
         permisos = JSON.parse(permisosString);
+        nombre = localStorage.getItem("nombre");
     });
     
 </script>
@@ -32,6 +34,9 @@
     <a href="/" class="d-flex flex-row justify-content-start align-items-center">
         <img src="/logo.svg" alt="Logo de Pera">
         <span class="text-bold text-light pera-text">Pera</span>
+        {#if nombre !== null}
+            <span class="text-light text-medium nombreU">{nombre}</span>
+        {/if}
     </a>
     <div>
         <div id="menu" class="d-none d-sm-flex flex-nowrap flex-row justify-content-right align-items-center top-100 end-0 bg-darker pb-sm-0 ps-sm-0">
@@ -104,5 +109,12 @@
             position: initial;
             border-radius: 0;
         }
+    }
+
+
+    .nombreU {
+        align-self: flex-end;
+        margin-bottom: 7px;
+        margin-left: 16px;
     }
 </style>

@@ -36,6 +36,7 @@ export const ServicioAdministrarDatosDelUsuario = {
             return await response.text();
         }
         const data : DTOAdminDatosUsuario = await response.json();
+        localStorage.setItem("nombre", data.nombre);
         return data;
     }
     

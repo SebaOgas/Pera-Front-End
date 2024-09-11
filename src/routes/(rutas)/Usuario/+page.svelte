@@ -47,6 +47,7 @@
         document.cookie = 'SESSION=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         localStorage.setItem("token", "");
         localStorage.setItem("permisos", "[]");
+        localStorage.setItem("nombre", "");
         window.location.href = "/";
     }
 </script>

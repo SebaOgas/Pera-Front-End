@@ -70,7 +70,7 @@
                     Puede acceder a una guía exhaustiva respecto al uso de Pera en el siguiente <a href="/Ayuda">enlace</a>.
                 </p>
                 <p>
-                    Ante cualquier duda o preocupación, también puede escribirnos a <a href="mailto:mail@gmail.com">mail@gmail.com</a> y le contestaremos tan pronto como nos sea posible.
+                    Ante cualquier duda o preocupación, también puede escribirnos a <a href="mailto:perasociedadanonima@gmail.com">perasociedadanonima@gmail.com</a> y le contestaremos tan pronto como nos sea posible.
                 </p>
             </div>
         </div>

@@ -23,6 +23,7 @@ export const ServicioLoguearUsuario = {
             const token = data.token;
             localStorage.setItem("token", token);
             localStorage.setItem("permisos", JSON.stringify(data.permisos));
+            localStorage.setItem("nombre", data.nombre);
         }
         return data;
     }

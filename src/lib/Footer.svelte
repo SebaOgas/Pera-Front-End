@@ -1,6 +1,6 @@
 <div class="footer d-flex flex-column flex-sm-row justify-content-between align-items-center bg-darker w-100 p-10">
     <span class="text-lighter">Pera © 2024</span>
-    <a class="text-light" href="mailto:mail@gmail.com">mail@gmail.com</a>
+    <a class="text-light" href="mailto:perasociedadanonima@gmail.com">perasociedadanonima@gmail.com</a>
     <a class="text-light" href="/Ayuda">Ayuda</a>
     <a class="text-light" href="/TerminosDeServicio">Términos de Servicio</a>
     <a class="text-light" href="/PoliticaDePrivacidad">Política de Privacidad</a>
